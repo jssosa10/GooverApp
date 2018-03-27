@@ -1,0 +1,52 @@
+<ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 300%" class="fondo1"> 
+        <ion-card col-sm-10 col-md-6 col-lg-4>
+      <ion-card id="login-card" col-12 style="width:150%" class="center">
+  
+        <img src="../assets/img/goover1.png" style="max-height: 150px; max-width: 300px" class="center">
+        <form>
+          <ion-list>
+  
+            <ion-item style="width:100%" no-lines class="center">
+              <ion-label stacked>Usuario o correo</ion-label>
+              <ion-input type="email" name="email" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
+            </ion-item>
+  
+          <br>
+  
+            <ion-item style="width:100%" class="center">
+              <ion-label stacked >Contraseña</ion-label>                  
+            <ion-input type="password" name="password" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
+          </ion-item>
+  
+          <br>
+
+          <ion-item style="width:100%" class="center">
+            <ion-label stacked >Repite la contraseña</ion-label>                  
+          <ion-input type="password2" name="password2" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
+        </ion-item>
+
+        <br>
+
+            <div padding>
+              <button ion-button color="primary" style="padding-top: 25px; padding-bottom: 25px" block>Registro</button>
+            </div>
+
+
+  
+            <h2>
+              <span>¿Ya tienes cuenta?</span>
+            </h2>
+
+
+  
+            <div padding>
+                <button ion-button color="light" style="padding-top: 25px; padding-bottom: 25px" block (click)="onLogin()">Login</button>
+              </div>
+              <br>
+          </ion-list>
+        </form>
+      </ion-card>
+    </ion-card>
+    </ion-row>
+  </ion-grid>

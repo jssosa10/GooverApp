@@ -1,0 +1,51 @@
+page-login{
+    .item-inner, ion-item {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+      }
+    
+      .label-md[stacked] {
+        font-size: 1.5rem;
+    }
+
+    .fondo1{
+        position: relative;
+        background: url('../assets/img/universitarios.png');
+       background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;              /* optional, center the image */
+    }
+    
+    
+    .scroll-content
+    {
+        overflow: hidden
+    }
+    
+    .gooverLogo
+        {
+            position: relative;
+            background: url('../assets/img/goover1.png') no-repeat transparent;
+    
+        }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+    
+    h2 {
+        width: 100%; 
+        text-align: center; 
+        border-bottom: 1px solid #000; 
+        line-height: 0.1em;
+        margin: 10px 0 20px; 
+     } 
+     
+     h2 span { 
+         background:#fff; 
+         padding:0 10px; 
+     }
+
+}
