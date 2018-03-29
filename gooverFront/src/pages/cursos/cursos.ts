@@ -16,6 +16,15 @@ export class CursosPage {
     cursos=[
         {titulo:'HTML',descripcion:'Curso chevere de HTML',img:'pipo.jpg'},
         {titulo:'Diferencial',descripcion:'Curso chevere de Calculo Dif',img:'pipo.jpg'},
+        {titulo:'Ionic',descripcion:'Curso para aprender ionic como io',img:'logo.png'},
+        {titulo:'HTML',descripcion:'Curso chevere de HTML',img:'pipo.jpg'},
+        {titulo:'Diferencial',descripcion:'Curso chevere de Calculo Dif',img:'pipo.jpg'},
+        {titulo:'Ionic',descripcion:'Curso para aprender ionic como io',img:'logo.png'},
+        {titulo:'HTML',descripcion:'Curso chevere de HTML',img:'pipo.jpg'},
+        {titulo:'Diferencial',descripcion:'Curso chevere de Calculo Dif',img:'pipo.jpg'},
+        {titulo:'Ionic',descripcion:'Curso para aprender ionic como io',img:'logo.png'},
+        {titulo:'HTML',descripcion:'Curso chevere de HTML',img:'pipo.jpg'},
+        {titulo:'Diferencial',descripcion:'Curso chevere de Calculo Dif',img:'pipo.jpg'},
         {titulo:'Ionic',descripcion:'Curso para aprender ionic como io',img:'logo.png'}
     ]
   constructor(public navCtrl: NavController) {
