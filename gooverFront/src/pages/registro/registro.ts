@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController,IonicPage } from 'ionic-angular';
-import { LoginPage } from '../login/login';
 
 @IonicPage
 ({
@@ -14,6 +13,11 @@ export class RegistroPage {
 
   constructor(public navCtrl: NavController) {
 
+  }
+
+  onRegistro()
+  {
+    this.navCtrl.setRoot('Bienvenida');
   }
 
   onLogin()

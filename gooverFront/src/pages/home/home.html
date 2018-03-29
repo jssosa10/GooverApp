@@ -1,0 +1,34 @@
+<ion-split-pane>
+    <ion-header>
+        <ion-navbar>
+            <button ion-button menuToggle>
+                <ion-icon name="menu" style="color : white;"></ion-icon>
+            </button>
+            <ion-title>
+                <button ion-button color="light" clear>Inicia</button>
+                <button ion-button color="light" style="color:white;background-color:#F9BF3B">Registrate</button>
+            </ion-title>
+        </ion-navbar>
+    </ion-header>
+    <ion-menu [content]="content">
+        <ion-header>
+            <ion-navbar>
+                <ion-title>Goover</ion-title>
+            </ion-navbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <button ion-item menuClose (click)="openPage(inicioPage)">
+                    Home
+                </button>
+                <button ion-item menuClose (click)="openPage(loginPage)">
+                    Cats
+                </button>
+                <button ion-item menuClose (click)="openPage(registroPage)">
+                    Dogs
+                </button>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main></ion-nav>
+</ion-split-pane>

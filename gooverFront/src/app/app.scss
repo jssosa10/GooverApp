@@ -90,7 +90,7 @@ $colors: (
 
 .fondo1{
     position: relative;
-    background: url('../assets/img/universitarios.png') no-repeat transparent;
+    background: url('../assets/img/fondo.png') no-repeat transparent;
    background-size:     cover;                      /* <------ */
 background-repeat:   no-repeat;
 background-position: center center;              /* optional, center the image */
@@ -101,6 +101,13 @@ background-position: center center;              /* optional, center the image *
 {
     overflow: hidden
 }
+
+.toolbar-background {
+    background: url('../assets/img/fondoHeader.png') no-repeat transparent;
+   background-size:     cover;                      /* <------ */
+background-repeat:   no-repeat;
+background-position: center center;              /* optional, center the image */
+  }
 
 .gooverLogo
     {
