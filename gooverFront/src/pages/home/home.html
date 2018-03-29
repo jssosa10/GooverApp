@@ -1,31 +1,35 @@
 <ion-split-pane>
     <ion-header>
-        <ion-navbar>
+        <ion-navbar align-title="center">
             <button ion-button menuToggle>
                 <ion-icon name="menu" style="color : white;"></ion-icon>
             </button>
-            <ion-title>
+            <ion-buttons right>
+
                 <button ion-button color="light" clear>Inicia</button>
                 <button ion-button color="light" style="color:white;background-color:#F9BF3B">Registrate</button>
-            </ion-title>
+                <!-- left aligned content here -->
+            </ion-buttons>
         </ion-navbar>
     </ion-header>
     <ion-menu [content]="content">
         <ion-header>
             <ion-navbar>
-                <ion-title>Goover</ion-title>
+                <ion-title><h4 style="color:white">GOOVER</h4></ion-title>
             </ion-navbar>
         </ion-header>
         <ion-content>
             <ion-list>
                 <button ion-item menuClose (click)="openPage(inicioPage)">
-                    Home
+                    Texto
                 </button>
+                <hr>
                 <button ion-item menuClose (click)="openPage(loginPage)">
-                    Cats
+                    Texto
                 </button>
+                <hr>
                 <button ion-item menuClose (click)="openPage(registroPage)">
-                    Dogs
+                    Texto
                 </button>
             </ion-list>
         </ion-content>

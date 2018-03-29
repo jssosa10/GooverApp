@@ -17,7 +17,7 @@ export class HomePage {
   private registroPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.rootPage = LoginPage;
+    this.rootPage = InicioPage;
     this.inicioPage = InicioPage;
     this.loginPage = LoginPage;
     this.registroPage = RegistroPage;
