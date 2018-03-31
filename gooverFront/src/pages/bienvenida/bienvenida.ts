@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
+import { MenuService} from '../../service/menu.service';
 
 @IonicPage
 ({
@@ -11,13 +12,13 @@ import { NavController, IonicPage } from 'ionic-angular';
 })
 export class BienvenidaPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public menuService: MenuService) {
 
   }
 
   onEmpezar()
   {    
-    this.navCtrl.setRoot('Cursos');
+    this.menuService.emitNavChangeEvent('Cursos')
   }
 
 }

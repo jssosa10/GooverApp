@@ -1,45 +1,50 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, NavParams } from 'ionic-angular';
+import { MenuService } from '../../service/menu.service';
+import { HomePage } from '../home/home';
 
 @IonicPage
-({
-  name: 'Cursos'
-})
+  ({
+    name: 'Cursos'
+  })
 @Component({
   selector: 'page-cursos',
   templateUrl: 'cursos.html'
 })
 export class CursosPage {
 
-    myInput="";
+  myInput = "";
+  cursos: any;
 
-    cursos=[
-        {titulo:'HTML',descripcion:'Curso chevere de HTML',img:'pipo.jpg'},
-        {titulo:'Diferencial',descripcion:'Curso chevere de Calculo Dif',img:'pipo.jpg'},
-        {titulo:'Ionic',descripcion:'Curso para aprender ionic como io',img:'logo.png'},
-        {titulo:'HTML',descripcion:'Curso chevere de HTML',img:'pipo.jpg'},
-        {titulo:'Diferencial',descripcion:'Curso chevere de Calculo Dif',img:'pipo.jpg'},
-        {titulo:'Ionic',descripcion:'Curso para aprender ionic como io',img:'logo.png'},
-        {titulo:'HTML',descripcion:'Curso chevere de HTML',img:'pipo.jpg'},
-        {titulo:'Diferencial',descripcion:'Curso chevere de Calculo Dif',img:'pipo.jpg'},
-        {titulo:'Ionic',descripcion:'Curso para aprender ionic como io',img:'logo.png'},
-        {titulo:'HTML',descripcion:'Curso chevere de HTML',img:'pipo.jpg'},
-        {titulo:'Diferencial',descripcion:'Curso chevere de Calculo Dif',img:'pipo.jpg'},
-        {titulo:'Ionic',descripcion:'Curso para aprender ionic como io',img:'logo.png'}
-    ]
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuService: MenuService) {
+    if (!this.navParams.get('menu')) {
+      navCtrl.setRoot(HomePage, { ruta: 'Cursos' })
+    }
   }
 
-  onInput($event)
-  {
-
+  setItems() {
+    this.cursos = [
+      { titulo: 'HTML1', descripcion: 'Curso chevere de HTML', img: 'pipo.jpg' },
+      { titulo: 'Diferencial', descripcion: 'Curso chevere de Calculo Dif', img: 'pipo.jpg' },
+      { titulo: 'Ionic', descripcion: 'Curso para aprender ionic como io', img: 'logo.png' },
+      { titulo: 'HTML11', descripcion: 'Curso chevere de HTML', img: 'pipo.jpg' },
+      { titulo: 'Diferencial', descripcion: 'Curso chevere de Calculo Dif', img: 'pipo.jpg' },
+      { titulo: 'Ionic', descripcion: 'Curso para aprender ionic como io', img: 'logo.png' },
+      { titulo: 'HTML2', descripcion: 'Curso chevere de HTML', img: 'pipo.jpg' },
+      { titulo: 'Diferencial', descripcion: 'Curso chevere de Calculo Dif', img: 'pipo.jpg' },
+      { titulo: 'Ionic', descripcion: 'Curso para aprender ionic como io', img: 'logo.png' },
+      { titulo: 'HTML22', descripcion: 'Curso chevere de HTML', img: 'pipo.jpg' },
+      { titulo: 'Diferencial', descripcion: 'Curso chevere de Calculo Dif', img: 'pipo.jpg' },
+      { titulo: 'Ionic', descripcion: 'Curso para aprender ionic como io', img: 'logo.png' }
+    ];
   }
 
-  onCurso(id)
-  {
-    
-    //this.navCtrl.setRoot(RegistroPage);
+  ngOnInit() {
+    this.setItems();
+  }
+
+  onCurso(id) {
+    this.navCtrl.setRoot(HomePage, { ruta: 'Curso', parametros: { id: '2', menu: true } })
   }
 
 }

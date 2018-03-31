@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage,NavParams } from 'ionic-angular';
+import { MenuService} from '../../service/menu.service';
+import { HomePage } from '../home/home';
 
 @IonicPage
 ({
@@ -11,18 +13,21 @@ import { NavController, IonicPage } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController,public navParams: NavParams, public menuService: MenuService) {
+    if(!this.navParams.get('menu'))
+    {
+     navCtrl.setRoot(HomePage,{ruta:'Login'})
+    }
   }
 
   onLogin()
   {
-    this.navCtrl.setRoot('Bienvenida');
+    this.menuService.emitNavChangeEvent('Bienvenida')
   }
 
   onRegistrar()
   {
-    this.navCtrl.setRoot('Registro');
+    this.menuService.emitNavChangeEvent('Registro')
   }
 
 }

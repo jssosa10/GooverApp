@@ -12,6 +12,7 @@ import { RegistroPage } from '../pages/registro/registro';
 import { LoginPageModule } from '../pages/login/login.module';
 import { InicioPageModule } from '../pages/inicio/inicio.module';
 import { RegistroPageModule } from '../pages/registro/registro.module';
+import { MenuService } from '../service/menu.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { RegistroPageModule } from '../pages/registro/registro.module';
   providers: [
     StatusBar,
     SplashScreen,
+    MenuService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

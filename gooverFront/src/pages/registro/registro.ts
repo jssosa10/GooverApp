@@ -1,28 +1,31 @@
 import { Component } from '@angular/core';
-import { NavController,IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, NavParams } from 'ionic-angular';
+import { MenuService } from '../../service/menu.service';
+import { HomePage } from '../home/home';
 
 @IonicPage
-({
-  name: 'Registro'
-})
+  ({
+    name: 'Registro'
+  })
 @Component({
   selector: 'page-registro',
   templateUrl: 'registro.html'
 })
 export class RegistroPage {
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController,public navParams: NavParams, public menuService: MenuService) {
+    if(!this.navParams.get('menu'))
+    {
+     navCtrl.setRoot(HomePage,{ruta:'Registro'})
+    }
   }
 
-  onRegistro()
-  {
-    this.navCtrl.setRoot('Bienvenida');
+  onRegistro() {
+    this.menuService.emitNavChangeEvent('Bienvenida');
   }
 
-  onLogin()
-  {
-    this.navCtrl.setRoot('Login');
+  onLogin() {
+    this.menuService.emitNavChangeEvent('Login');
   }
 
 

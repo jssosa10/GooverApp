@@ -1,17 +1,23 @@
-<ion-content class="has-header" padding>
-    <ion-searchbar [(ngModel)]="myInput" (ionInput)="onInput($event)" placeholder="Busca cursos">
-    </ion-searchbar>
+<ion-content style="top:44px" padding>
+    <ion-grid text-center>
+        <ion-row>
+            <ion-col col-12 col-md-8 offset-md-2>
+                <ion-searchbar (ionInput)="filterItems($event)" placeholder="Busca cursos">
+                </ion-searchbar>
 
-    <ion-scroll style="height: 95vh;" scrollY="true">
-        <ion-list scroll="true">
-            <ion-item *ngFor="let curso of cursos">
-                <ion-thumbnail item-left>
-                    <img src="../assets/cursos/{{curso.img}}">
-                </ion-thumbnail>
-                <h1>{{curso.titulo}}</h1>
-                <p>{{curso.descripcion}}</p>
-                <button style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px" (click)="onCurso()" item-right>Agregar</button>
-            </ion-item>
-        </ion-list>
-    </ion-scroll>
+                <ion-scroll style="height:80vh;" scrollY="true">
+                    <ion-list scroll="true">
+                        <ion-item *ngFor="let curso of cursos">
+                            <ion-thumbnail item-left>
+                                <img src="../assets/cursos/{{curso.img}}">
+                            </ion-thumbnail>
+                            <h1>{{curso.titulo}}</h1>
+                            <p>{{curso.descripcion}}</p>
+                            <button style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px" (click)="onCurso()" item-right>Agregar</button>
+                        </ion-item>
+                    </ion-list>
+                </ion-scroll>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

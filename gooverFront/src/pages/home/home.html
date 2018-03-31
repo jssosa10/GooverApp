@@ -20,19 +20,20 @@
         </ion-header>
         <ion-content>
             <ion-list>
+     
                 <button ion-item menuClose (click)="openPage(inicioPage)">
-                    Texto
+                    <img src="../../assets/img/iconA.png"  style="vertical-align:middle;max-height: 25px; max-width: 25px">FAQ
                 </button>
                 <hr>
                 <button ion-item menuClose (click)="openPage(loginPage)">
-                    Texto
+                        <img src="../../assets/img/iconA.png"  style="vertical-align:middle;max-height: 25px; max-width: 25px"> Contactenos
                 </button>
                 <hr>
                 <button ion-item menuClose (click)="openPage(registroPage)">
-                    Texto
+                        <img src="../../assets/img/iconA.png"  style="vertical-align:middle;max-height: 25px; max-width: 25px"> Texto
                 </button>
             </ion-list>
         </ion-content>
     </ion-menu>
-    <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main></ion-nav>
+    <ion-nav [root]="rootPage" [rootParams]="parametros" #content swipeBackEnabled="false" main></ion-nav>
 </ion-split-pane>

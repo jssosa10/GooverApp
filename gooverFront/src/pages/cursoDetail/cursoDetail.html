@@ -1,0 +1,42 @@
+<ion-content style="top:44px" padding text-center>
+    <ion-card>
+
+        <ion-card-header>
+            <h1>{{curso.titulo}}</h1>
+        </ion-card-header>
+        <ion-scroll style="height:80vh;" scrollY="true">
+            <ion-list scroll="true">
+                <ion-card>
+                    <ion-list-header *ngFor="let tema of curso.temas; let i = index" no-lines no-padding>
+                        <!-- Toggle Button -->
+                        <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': tema.open, 'section': !tema.open}">
+                            <ion-icon item-left name="arrow-forward" *ngIf="!tema.open"></ion-icon>
+                            <ion-icon item-left name="arrow-down" *ngIf="tema.open"></ion-icon>
+                            {{ tema.nombre }}
+                        </button>
+
+                        <ion-list *ngIf="tema.recursos && tema.open" no-lines>
+                            <!-- Second Level -->
+                            <ion-list-header *ngFor="let recurso of tema.recursos; let j = index" style="padding-top:10px">
+                                <!-- Toggle Button -->
+                                <img src="../assets/img/{{recurso.tipo}}.png" style="float:left;vertical-align:middle;max-height: 30px; max-width: 30px;padding-right:5px">
+                                <h3 style="float:left;text-align: left;">{{ recurso.nombre }}</h3>
+
+
+                                <!-- Direct Add Button as Fallback -->
+                                <img src="../assets/img/star.png" style="text-align: right;float:right;vertical-align:middle;max-height: 25px; max-width: 25px">
+                                <h1 style="float:right;">{{recurso.calificacion}}</h1>
+
+
+                            </ion-list-header>
+                            <ion-list-header style="padding-top:10px">
+                                <ion-icon name="add-circle" style="font-size:3em"></ion-icon>
+                            </ion-list-header>
+                        </ion-list>
+
+                    </ion-list-header>
+                </ion-card>
+            </ion-list>
+        </ion-scroll>
+    </ion-card>
+</ion-content>
