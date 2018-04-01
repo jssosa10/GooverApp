@@ -1,7 +1,17 @@
-Ôªø<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116727650-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116727650-1');
+</script>
+
 <title>Goover</title>
 <meta charset="UTF-8">
 <style type="text/css">
@@ -15,7 +25,6 @@ img{
   width:100%; height:100%;
   object-fit: cover;
 }
-
 .letter{
   width: 100em;
   color: rgb(45,54, 71);
@@ -28,12 +37,10 @@ img{
   border-radius: 5px; 
   padding-right: .5em;
 }
-
 input{
   border:1px solid #f9bf3b;
   width: 100%;
 }
-
 .topnav button {
   margin-top: 3px;
   margin-left: -1px;
@@ -46,7 +53,6 @@ input{
   width: 8%;
   height:50px;
 }
-
 .topnav {
     position: absolute;
     left: 5%;
@@ -75,7 +81,6 @@ video {
     top: 10%;  
     float: right;  
 }
-
 @media (max-width:750px){
  	video {
     		position: absolute;
@@ -105,7 +110,6 @@ video {
 	}
 	
 }
-
 </style>
 </head>
 <body>
@@ -114,14 +118,14 @@ video {
 <div class="pv">
 Encuentra los mejores recursos <br>
                 para estudiar <br>
-		Ahorra tiempo y aprende m√°s
+		Ahorra tiempo y aprende m·s
 </div>
 
 
 <div class="topnav">
 <div class = "letter" >
-Nuestra versi√≥n <b>BETA</b> estar√° disponible pr√≥ximamente. <br>
-D√©janos tu email y te avisaremos tan pronto este lista: <br>
+Nuestra versiÛn <b>BETA</b> estar· disponible prÛximamente. <br>
+DÈjanos tu email y te avisaremos tan pronto este lista: <br>
 </div>
   <div>
     <form action = "http://54.197.214.217:5000" method = "POST">
@@ -132,9 +136,8 @@ D√©janos tu email y te avisaremos tan pronto este lista: <br>
   </div>
 </div>
 <br>
-<video width= "40%" height= "70%" controls>
-  <source src="movie.mp4" type="video/mp4">
-  <source src="movie.ogg" type="video/ogg">
+<video width= "40%" height= "70%" controls onplay="gtag('event', 'play');"  onseeking="gtag('event', 'seeking');" onended="gtag('event', 'ended');">
+  <source src="video.mp4" type="video/mp4"> 
   Your browser does not support the video tag.
 </video>
 </body>
