@@ -1,0 +1,103 @@
+page-inicio{
+    
+    ion-content {
+
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+    
+  }
+        margin:0;
+        height:100%;
+        font-family: Helvetica, Sans-Serif, Arial;
+        background-image: url('../../img/fondoInicio.png');
+    img{
+    display:block;
+    width:100%; height:100%;
+    object-fit: cover;
+    }
+    .letter{
+    width: 100em;
+    color: rgb(45,54, 71);
+    font-size: 1.7vw;
+    }
+    .topnav input[type=email] {
+    padding-left: 6px;
+    width: 18%;
+    height:50px;
+    border-radius: 5px; 
+    padding-right: .5em;
+    }
+    input{
+    border:1px solid #f9bf3b;
+    width: 100%;
+    }
+    .topnav button {
+    margin-top: 3px;
+    margin-left: -1px;
+    background: #f9bf3b;
+    font-size: 1.3em;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    width: 8%;
+    height:50px;
+    }
+    .topnav {
+        position: absolute;
+        left: 5%;
+        top: 65%;
+    }
+    .pv{  
+    position: absolute;
+    left: 5%;
+    top: 15%;
+    width: 100em;
+    color:white;
+    font-size: 3vw;
+    }
+    .dosPv{
+    position: absolute;
+    left: 5%;
+    top: 33%;
+    width: 100em;
+    color:white;
+    font-size: 2.5vw;
+    margin-top:5px;
+    }
+    video {
+        position: absolute;
+        top: 0%;  
+        float: right;  
+    }
+    @media (max-width:991px){
+        video {
+                position: absolute;
+                left: 0%;
+                top: 100%;  
+            width: 90%;  
+        }	
+        .pv{
+            width: 90%;
+            font-size: 8vw;
+            float:left;
+            top:20%;
+        }
+        .letter{
+            width: 90%;
+            color: rgb(45,54, 71);
+            font-size: 4.5vw;
+            top: 50%;
+        }
+        .topnav  button {
+            width: 95%;
+            top: 50%;
+        }
+        .topnav input[type=email] {
+            width: 90%;
+            top: 70%;
+        }
+    
+    }
+}

@@ -10,10 +10,8 @@ page-login{
 
     .fondo1{
         position: relative;
-        background: url('../assets/img/fondo.png');
-       background-size:     cover;                      /* <------ */
-    background-repeat:   no-repeat;
-    background-position: center center;              /* optional, center the image */
+        background: url('../assets/img/book_fondo.png') transparent;
+        background-repeat:   repeat;
     }
     
     

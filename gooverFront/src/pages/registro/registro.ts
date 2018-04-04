@@ -14,18 +14,23 @@ import { HomePage } from '../home/home';
 export class RegistroPage {
 
   constructor(public navCtrl: NavController,public navParams: NavParams, public menuService: MenuService) {
-    if(!this.navParams.get('menu'))
-    {
-     navCtrl.setRoot(HomePage,{ruta:'Registro'})
-    }
+  
   }
 
   onRegistro() {
-    this.menuService.emitNavChangeEvent('Bienvenida');
+    this.navCtrl.setRoot(HomePage);
   }
 
   onLogin() {
-    this.menuService.emitNavChangeEvent('Login');
+    this.navCtrl.setRoot('Login');
+  }
+
+  openLogin() {
+    this.navCtrl.setRoot('Login');
+  }
+
+  openRegistro() {
+    this.navCtrl.setRoot('Registro');
   }
 
 

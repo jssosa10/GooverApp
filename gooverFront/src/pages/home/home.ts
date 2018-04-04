@@ -25,7 +25,7 @@ export class HomePage {
   subscription: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuService: MenuService) {
-    this.rootPage = InicioPage;
+    this.rootPage = BienvenidaPage;
     this.inicioPage = InicioPage;
     this.loginPage = LoginPage;
     this.registroPage = RegistroPage;

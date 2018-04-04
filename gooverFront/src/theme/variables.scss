@@ -38,7 +38,16 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  color1 : #8FAADC,
+  color2 : #DAE3F3,
+  color3: #3DBCC0,
+  c1: #CC5803,
+  c2: #D6FFF6,
+  c3: #DB504A,
+  c4: #FF6F59,
+  c5: #5D737E,
+  toolbar:#d6d6d6
 );
 
 
@@ -86,3 +95,4 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+$toolbar-background: #d6d6d6;

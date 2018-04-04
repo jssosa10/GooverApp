@@ -6,31 +6,40 @@
             </button>
             <ion-buttons right>
 
-                <button ion-button color="light" clear (click)="openPage(loginPage)">Iniciar</button>
-                <button ion-button color="light" style="color:white;background-color:#F9BF3B" (click)="openPage(registroPage)">Registrate</button>
-                <!-- left aligned content here -->
+                <button ion-button color="light" clear (click)="openPage(loginPage)">
+                    Iniciar
+                </button>
+
+                <button ion-button color="light" round style="background-color:#CC5803" (click)="openPage(registroPage)">
+                    Registrate
+                </button>
+
+
+                <!-- left aligned content her style="color:white;background-color:#F9BF3B"e -->
             </ion-buttons>
         </ion-navbar>
     </ion-header>
     <ion-menu [content]="content">
         <ion-header>
             <ion-navbar>
-                <ion-title><h4 style="color:white">GOOVER</h4></ion-title>
+                <ion-title>
+                    <h4 style="color:white">GOOVER</h4>
+                </ion-title>
             </ion-navbar>
         </ion-header>
         <ion-content>
             <ion-list>
-     
+
                 <button ion-item menuClose (click)="openPage(inicioPage)">
-                    <img src="../../assets/img/iconA.png"  style="vertical-align:middle;max-height: 25px; max-width: 25px">FAQ
+                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px">FAQ
                 </button>
                 <hr>
                 <button ion-item menuClose (click)="openPage(loginPage)">
-                        <img src="../../assets/img/iconA.png"  style="vertical-align:middle;max-height: 25px; max-width: 25px"> Contactenos
+                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Contactenos
                 </button>
                 <hr>
                 <button ion-item menuClose (click)="openPage(registroPage)">
-                        <img src="../../assets/img/iconA.png"  style="vertical-align:middle;max-height: 25px; max-width: 25px"> Texto
+                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Texto
                 </button>
             </ion-list>
         </ion-content>
