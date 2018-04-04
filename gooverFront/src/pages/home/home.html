@@ -4,22 +4,10 @@
             <button ion-button menuToggle>
                 <ion-icon name="menu" style="color : white;"></ion-icon>
             </button>
-            <ion-buttons right>
-
-                <button ion-button color="light" clear (click)="openPage(loginPage)">
-                    Iniciar
-                </button>
-
-                <button ion-button color="light" round style="background-color:#CC5803" (click)="openPage(registroPage)">
-                    Registrate
-                </button>
-
-
-                <!-- left aligned content her style="color:white;background-color:#F9BF3B"e -->
-            </ion-buttons>
+            <p style="color:white; float: right;">Hola, PIPO</p>
         </ion-navbar>
     </ion-header>
-    <ion-menu [content]="content">
+    <ion-menu [content]="content" persistent='true'>
         <ion-header>
             <ion-navbar>
                 <ion-title>

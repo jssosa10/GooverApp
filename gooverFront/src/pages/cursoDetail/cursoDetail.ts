@@ -17,7 +17,6 @@ export class CursoDetailPage {
     
   constructor(public navCtrl: NavController,public navParams: NavParams) {
     this.id=this.navParams.get('id');
-    console.log(this.id);
     this.curso={titulo:'Calculo Diferencial',descripcion:'Curso chevere de HTML',img:'pipo.jpg',
     temas:[{nombre:'limites',recursos:[
       {nombre:'Video Julio Profe',calificacion:'5',tipo:'Web'},
@@ -25,7 +24,6 @@ export class CursoDetailPage {
     {nombre:'derivadas',recursos:[{nombre:'Stewart1',calificacion:'4',tipo:'book'}]},
     {nombre:'integrales',recursos:[{nombre:'Stewart2',calificacion:'4.5',tipo:'book'}]}
   ]};
-  console.log(this.curso);
   }
 
   toggleSection(i) {

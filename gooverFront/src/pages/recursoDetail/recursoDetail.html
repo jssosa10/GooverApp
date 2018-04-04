@@ -1,0 +1,18 @@
+<ion-content style="top:44px" padding text-center>
+    <ion-card>
+
+        <ion-card-header>
+            <h1>{{recurso.titulo}}</h1>
+        </ion-card-header>
+        <ion-scroll style="height:80vh;" scrollY="true">
+            <ion-list scroll="true">
+                <ion-card>
+                    <ion-list-header *ngFor="let img of recurso.contenido.imagenes; let i = index" no-lines no-padding>
+                        <!-- Toggle Button -->
+                                <img src="../assets/cursos/sistrans/{{img}}" style="float:left;vertical-align:middle;padding-right:5px">
+                    </ion-list-header>
+                </ion-card>
+            </ion-list>
+        </ion-scroll>
+    </ion-card>
+</ion-content>

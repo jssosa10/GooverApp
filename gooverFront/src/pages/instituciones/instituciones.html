@@ -1,0 +1,22 @@
+<ion-content style="top:44px" padding>
+    <ion-grid text-center>
+        <ion-row>
+            <ion-col col-12 col-md-8 offset-md-2>
+                <ion-searchbar (ionInput)="filterItems($event)" placeholder="Busca instituciones">
+                </ion-searchbar>
+
+                <ion-scroll style="height:80vh;" scrollY="true">
+                    <ion-list scroll="true">
+                        <ion-item *ngFor="let institucion of instituciones">
+                            <ion-thumbnail item-left>
+                                <img src="../assets/instituciones/{{institucion.img}}">
+                            </ion-thumbnail>
+                            <h1>{{institucion.titulo}}</h1>
+                            <button style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px" (click)="onInstitucion()" item-right>Ver cursos</button>
+                        </ion-item>
+                    </ion-list>
+                </ion-scroll>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

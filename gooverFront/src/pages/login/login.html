@@ -4,11 +4,11 @@
       </button>
       <ion-buttons right>
 
-          <button ion-button color="light" clear (click)="openLogin()">
+          <button ion-button clear (click)="openLogin()">
               Iniciar
           </button>
 
-          <button ion-button color="light" round style="background-color:#387ef5" (click)="openRegistro()">
+          <button ion-button round style="background-color:#387ef5" (click)="openRegistro()">
               Registrate
           </button>
 
@@ -23,19 +23,19 @@
       <ion-card id="login-card" col-12 style="width:150%" class="center">
   
         <img src="../assets/img/goover1.png" style="max-height: 150px; max-width: 300px;padding-top: 25px; padding-bottom: 25px" class="center">
-        <form>
+        <form [formGroup]="formgroup">
           <ion-list>
   
             <ion-item style="width:100%" no-lines class="center">
               <ion-label stacked>Usuario o correo</ion-label>
-              <ion-input type="email" name="email" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
+              <ion-input type="text" formControlName="userName" style="background-color : #d1d1d1;padding-left: 2px" required></ion-input>
             </ion-item>
   
           <br>
   
             <ion-item style="width:100%" class="center">
               <ion-label stacked >Contraseña</ion-label>                  
-            <ion-input type="password" name="password" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
+            <ion-input type="password" formControlName="pass" style="background-color : #d1d1d1;padding-left: 2px" required></ion-input>
           </ion-item>
   
           <br>

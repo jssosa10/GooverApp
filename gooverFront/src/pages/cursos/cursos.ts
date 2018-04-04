@@ -5,7 +5,8 @@ import { HomePage } from '../home/home';
 
 @IonicPage
   ({
-    name: 'Cursos'
+    name: 'Cursos',
+    segment: 'instituciones/:id/curso'
   })
 @Component({
   selector: 'page-cursos',
@@ -15,8 +16,10 @@ export class CursosPage {
 
   myInput = "";
   cursos: any;
+  id:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuService: MenuService) {
+    this.id=this.navParams.get('id');
     if (!this.navParams.get('menu')) {
       navCtrl.setRoot(HomePage, { ruta: 'Cursos' })
     }

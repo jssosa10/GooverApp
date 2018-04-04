@@ -33,18 +33,21 @@ export class HomePage {
     this.cursosPage = CursosPage;
 
     menuService.setMenuActivo();
-
+    console.log('llega ');
+    console.log(navParams);
  
-    if (this.navParams.get('ruta')) {
-      if (this.navParams.get('ruta') === 'Curso') {
+    if (this.navParams.get('ruta')){
+      console.log('llega2');
+      if (this.navParams.get('ruta') === 'Cursos') {
        this.parametros=this.navParams.get('parametros');
        console.log(this.parametros);
       }
       else {
-        console.log(navParams);
-        console.log(navParams.get('ruta'));
+        console.log('a' +navParams);
+        console.log('b' +navParams.get('ruta'));
         this.parametros={menu:true};       
       }
+      console.log('c');
       this.rootPage = navParams.get('ruta');
     }
 
