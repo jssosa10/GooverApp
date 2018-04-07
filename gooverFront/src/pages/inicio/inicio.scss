@@ -1,12 +1,15 @@
+@import "../../theme/globals";
+
 page-inicio{
-    
+    background-color:#ecf0f5;
     ion-content {
 
         display: flex!important;
         align-content: center!important;
         align-items: center!important;
     
-  }
+    }
+
         margin:0;
         height:100%;
         font-family: Helvetica, Sans-Serif, Arial;

@@ -4,11 +4,13 @@
       </button>
       <ion-buttons right>
 
-          <button ion-button color="light" clear (click)="openLogin()">
+          <button ion-button clear (click)="openLogin()">
               Iniciar
           </button>
+          <div class="divider">
 
-          <button ion-button color="light" round style="background-color:#387ef5" (click)="openRegistro()">
+          </div>
+          <button class="register" ion-button round register (click)="openRegistro()">
               Registrate
           </button>
 
@@ -19,7 +21,7 @@
 </ion-header>
 <ion-grid style="height: 100%;padding:0%">
     <ion-row justify-content-center align-items-center style="height: 300%" class="fondo1"> 
-        <ion-card col-sm-10 col-md-6 col-lg-4>
+        <ion-card col-sm-10 col-md-3 col-lg-3>
       <ion-card id="login-card" col-12 style="width:150%" class="center">
   
         <img src="../assets/img/goover1.png" style="max-height: 150px; max-width: 300px" class="center">

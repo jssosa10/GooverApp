@@ -18,7 +18,7 @@ export class RegistroPage {
   }
 
   onRegistro() {
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(HomePage, { ruta: 'Bienvenida' });
   }
 
   onLogin() {

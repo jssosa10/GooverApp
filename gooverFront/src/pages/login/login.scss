@@ -1,4 +1,13 @@
+@import "../../theme/globals";
+
 page-login{
+
+    .divider{
+        width:5px;
+        height: auto;
+        display:inline-block;
+    }
+    background-color:#ecf0f5;
     .item-inner, ion-item {
         border-bottom-color: transparent !important;
         box-shadow: none !important;
