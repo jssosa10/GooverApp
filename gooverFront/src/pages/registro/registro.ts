@@ -37,7 +37,7 @@ export class RegistroPage {
   }
 
   onRegistro() {
-    this.headers = new Headers({'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'});
+    this.headers = new Headers({'Content-Type' : 'application/form-daa});
     this.options = new RequestOptions({ headers: this.headers });
     
     let data = {
