@@ -1,3 +1,4 @@
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { MenuService } from '../../service/menu.service';
@@ -17,9 +18,11 @@ export class LoginPage {
   formgroup: FormGroup;
   userName: AbstractControl;
   pass: AbstractControl;
+  headers: Headers;
+  options: RequestOptions;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public menuService: MenuService, public formBuilder: FormBuilder) {
+    public menuService: MenuService, public formBuilder: FormBuilder, public http: Http) {
     // if(!this.navParams.get('menu'))
     //{
     // navCtrl.setRoot(HomePage,{ruta:'Login'})
@@ -35,6 +38,8 @@ export class LoginPage {
   
 
   onLogin() {
+    this.headers= new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+    this.options= new RequestOptions({headers:this.headers});
     this.navCtrl.setRoot(HomePage, { ruta: 'Bienvenida' });
     //this.menuService.emitNavChangeEvent('Bienvenida')
   }

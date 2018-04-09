@@ -14,6 +14,7 @@ import { InicioPageModule } from '../pages/inicio/inicio.module';
 import { RegistroPageModule } from '../pages/registro/registro.module';
 import { MenuService } from '../service/menu.service';
 import { PerfilPageModule } from '../pages/perfil/perfil.module';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
     InicioPageModule,
     RegistroPageModule,
     PerfilPageModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

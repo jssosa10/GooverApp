@@ -1,4 +1,4 @@
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { MenuService } from '../../service/menu.service';
@@ -19,6 +19,8 @@ export class RegistroPage {
   userName: AbstractControl;
   pass: AbstractControl;
   pass2: AbstractControl;
+  headers: Headers;
+  options: RequestOptions;
 
   constructor(public navCtrl: NavController,public navParams: NavParams, public menuService: MenuService
   ,public formBuilder: FormBuilder, public http: Http) {
@@ -35,12 +37,25 @@ export class RegistroPage {
   }
 
   onRegistro() {
-    this.http.post('54.197.214.217:9000', JSON.stringify(this.formgroup)).subscribe((response: Response) => {
-      console.log('test');
+    this.headers = new Headers({'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'});
+    this.options = new RequestOptions({ headers: this.headers });
+    
+    let data = {
+      username: this.userName,
+      password: this.pass
+    };
+    
+    let params = new URLSearchParams();
+    for(let key in data){
+        params.set(key, data[key]) 
+    }
+
+    this.http.post('http://54.197.214.217:9000/register', params.toString(), {headers: this.headers} ).subscribe((response: Response) => {
+      this.navCtrl.setRoot(HomePage, { ruta: 'Bienvenida' });
   }, error => {
-    console.log(JSON.stringify(error.json()));
+    console.log(error);
   });
-    this.navCtrl.setRoot(HomePage, { ruta: 'Bienvenida' });
+   
   }
 
   onLogin() {
