@@ -1,0 +1,33 @@
+<ion-content>
+    <ion-card>
+        <h1 class="center">
+            {{login}}
+        </h1>
+
+        <form [formGroup]="formgroup">
+
+            <ion-item style="width:100%" class="center">
+                <ion-label stacked>Contraseña actual</ion-label>
+                <ion-input type="password" formControlName="pass" style="background-color : #d1d1d1;padding-left: 2px" required></ion-input>
+            </ion-item>
+
+            <ion-item style="width:100%" class="center">
+                <ion-label stacked>Nueva contraseña</ion-label>
+                <ion-input type="password" formControlName="pass" style="background-color : #d1d1d1;padding-left: 2px" required></ion-input>
+            </ion-item>
+
+            <ion-item style="width:100%" class="center">
+                <ion-label stacked>Repita la contraseña</ion-label>
+                <ion-input type="password" formControlName="pass2" style="background-color : #d1d1d1;padding-left: 2px" required></ion-input>
+            </ion-item>
+
+            <div padding>
+                <button ion-button color="primary" style="padding-top: 25px; padding-bottom: 25px" block (click)="cambiarPass()">Cambiar contraseña</button>
+            </div>
+
+        </form>
+
+    
+
+    </ion-card>
+</ion-content>

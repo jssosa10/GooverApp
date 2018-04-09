@@ -1,6 +1,6 @@
 <ion-split-pane>
     <ion-header>
-        <ion-navbar align-title="center">
+        <ion-navbar color="toolbar" align-title="center">
             <button ion-button menuToggle>
                 <ion-icon name="menu" style="color : white;"></ion-icon>
             </button>
@@ -9,25 +9,29 @@
     </ion-header>
     <ion-menu [content]="content" persistent='true'>
         <ion-header>
-            <ion-navbar>
+            <ion-navbar color="toolbar">
                 <ion-title>
-                    <h4 style="color:white">GOOVER</h4>
+                    <img src="../assets/img/goover1.png" style="max-height: 100px; max-width: 150px">
                 </ion-title>
             </ion-navbar>
         </ion-header>
         <ion-content>
             <ion-list>
 
-                <button ion-item menuClose (click)="openPage(inicioPage)">
-                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px">FAQ
+                <button ion-item menuClose (click)="openPage(perfilPage)">
+                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px">Mi perfil
                 </button>
                 <hr>
                 <button ion-item menuClose (click)="openPage(loginPage)">
-                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Contactenos
+                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Mis cursos
+                </button>
+                <hr> 
+                <button ion-item menuClose (click)="openPage(registroPage)">
+                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Más cursos
                 </button>
                 <hr>
-                <button ion-item menuClose (click)="openPage(registroPage)">
-                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Texto
+                <button ion-item menuClose (click)="desloguear()">
+                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Cerrar sesión
                 </button>
             </ion-list>
         </ion-content>

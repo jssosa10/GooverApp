@@ -6,6 +6,7 @@ import { RegistroPage } from '../registro/registro';
 import { BienvenidaPage } from '../bienvenida/bienvenida';
 import { CursosPage } from '../cursos/cursos';
 import { CursoDetailPage } from '../cursoDetail/cursoDetail';
+import { PerfilPage } from '../perfil/perfil';
 import { MenuService } from '../../service/menu.service';
 
 
@@ -22,6 +23,7 @@ export class HomePage {
   private registroPage;
   private bienvenidaPage;
   private cursosPage;
+  private perfilPage;
   subscription: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuService: MenuService) {
@@ -31,23 +33,16 @@ export class HomePage {
     this.registroPage = RegistroPage;
     this.bienvenidaPage = BienvenidaPage;
     this.cursosPage = CursosPage;
-
+    this.perfilPage= PerfilPage;
     menuService.setMenuActivo();
-    console.log('llega ');
-    console.log(navParams);
  
     if (this.navParams.get('ruta')){
-      console.log('llega2');
       if (this.navParams.get('ruta') === 'Cursos') {
        this.parametros=this.navParams.get('parametros');
-       console.log(this.parametros);
       }
       else {
-        console.log('a' +navParams);
-        console.log('b' +navParams.get('ruta'));
         this.parametros={menu:true};       
       }
-      console.log('c');
       this.rootPage = navParams.get('ruta');
     }
 
@@ -60,6 +55,10 @@ export class HomePage {
 
   openPage(p) {
     this.rootPage = p;
+  }
+
+  desloguear(){
+
   }
 
 

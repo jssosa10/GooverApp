@@ -13,6 +13,7 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { InicioPageModule } from '../pages/inicio/inicio.module';
 import { RegistroPageModule } from '../pages/registro/registro.module';
 import { MenuService } from '../service/menu.service';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MenuService } from '../service/menu.service';
     LoginPageModule,
     InicioPageModule,
     RegistroPageModule,
+    PerfilPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

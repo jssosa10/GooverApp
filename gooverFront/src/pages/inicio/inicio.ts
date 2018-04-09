@@ -15,7 +15,6 @@ export class InicioPage {
   constructor(public navCtrl: NavController, platform: Platform) {
     platform.ready().then((readySource) => {
       this.width = platform.width();
-      console.log('Height: ' + platform.height());
     });
   }
 
