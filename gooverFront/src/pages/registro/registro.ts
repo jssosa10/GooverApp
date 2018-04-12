@@ -37,20 +37,9 @@ export class RegistroPage {
   }
 
   onRegistro() {
-    this.headers = new Headers({'Content-Type' : 'application/form-daa});
-    this.options = new RequestOptions({ headers: this.headers });
-    
-    let data = {
-      username: this.userName,
-      password: this.pass
-    };
-    
-    let params = new URLSearchParams();
-    for(let key in data){
-        params.set(key, data[key]) 
-    }
-
-    this.http.post('http://54.197.214.217:9000/register', params.toString(), {headers: this.headers} ).subscribe((response: Response) => {
+    let headerOptions: any = { 'Content-Type': 'application/json' };
+    let headers = new Headers(headerOptions);
+    this.http.post('http://54.197.214.217:9000/register',{username: this.formgroup.get('userName').value, password: this.formgroup.get('pass').value},new RequestOptions({ headers: headers })).subscribe((response: Response) => {
       this.navCtrl.setRoot(HomePage, { ruta: 'Bienvenida' });
   }, error => {
     console.log(error);
