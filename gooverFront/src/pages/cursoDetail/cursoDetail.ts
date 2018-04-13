@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams,AlertController } from 'ionic-angular';
 
+import { AuthService } from '../../services/auth.service';
+
 @IonicPage
 ({
   name: 'Curso',
@@ -14,8 +16,10 @@ export class CursoDetailPage {
 
     curso:any;
     id:any;
+    username: string;
     
-  constructor(public navCtrl: NavController,public navParams: NavParams,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController,public navParams: NavParams,
+    public alertCtrl: AlertController,private auth:AuthService) {
     this.id=this.navParams.get('id');
     this.curso={titulo:'Calculo Diferencial',descripcion:'Curso chevere de HTML',img:'pipo.jpg',
     temas:[{nombre:'limites',recursos:[
@@ -24,6 +28,7 @@ export class CursoDetailPage {
     {nombre:'derivadas',recursos:[{nombre:'Stewart1',calificacion:'4',tipo:'book'}]},
     {nombre:'integrales',recursos:[{nombre:'Stewart2',calificacion:'4.5',tipo:'book'}]}
   ]};
+  this.username=auth.getUserName();
   }
 
   toggleSection(i) {

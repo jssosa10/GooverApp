@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, RequestOptions,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -8,11 +8,30 @@ import 'rxjs/add/operator/map';
 export class AuthService {
    userName: string;
    loggedIn: boolean;
-   url = 'http://localhost:8000/auth';
+   url = 'http://54.197.214.217:9000';
 
    constructor(private http: Http) {
       this.userName = '';
       this.loggedIn = false;
+   }
+
+   register(userInfo, headers)
+   {
+    let url = `${this.url}/register`;
+    let iJon = JSON.stringify(userInfo);
+
+    return this.http.post(url, iJon,new RequestOptions({ headers: headers }))
+    .map(res => res.text())
+    .map(res => {
+       if (res=="error" || res=="nofound"){
+          this.loggedIn = false;
+       } else {
+         // localStorage.setItem('token', res);
+          this.userName = userInfo.user;
+          this.loggedIn = true;
+       }
+       return this.loggedIn;
+    });
    }
    
    login(userInfo) {
@@ -30,7 +49,7 @@ export class AuthService {
             this.loggedIn = false;
          } else {
             localStorage.setItem('token', res);
-            this.userName = userInfo.user;
+           this.userName = userInfo.user;
             this.loggedIn = true;
          }
          return this.loggedIn;
@@ -45,5 +64,11 @@ export class AuthService {
 
    isLoggedIn() {
       return this.loggedIn;
+   }
+
+   getUserName()
+   {
+     return 'usuario1';
+     //return this.userName;
    }
 }

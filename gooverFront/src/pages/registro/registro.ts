@@ -1,9 +1,9 @@
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
-import { MenuService } from '../../service/menu.service';
 import { HomePage } from '../home/home';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage
   ({
@@ -19,11 +19,10 @@ export class RegistroPage {
   userName: AbstractControl;
   pass: AbstractControl;
   pass2: AbstractControl;
-  headers: Headers;
-  options: RequestOptions;
+  isLogged: boolean;
 
-  constructor(public navCtrl: NavController,public navParams: NavParams, public menuService: MenuService
-  ,public formBuilder: FormBuilder, public http: Http) {
+  constructor(public navCtrl: NavController,public navParams: NavParams,
+    public formBuilder: FormBuilder,private auth:AuthService) {
   
     this.formgroup = formBuilder.group({
       userName: ['', Validators.required],
@@ -39,11 +38,21 @@ export class RegistroPage {
   onRegistro() {
     let headerOptions: any = { 'Content-Type': 'application/json' };
     let headers = new Headers(headerOptions);
-    this.http.post('http://54.197.214.217:9000/register',{username: this.formgroup.get('userName').value, password: this.formgroup.get('pass').value},new RequestOptions({ headers: headers })).subscribe((response: Response) => {
-      this.navCtrl.setRoot(HomePage, { ruta: 'Bienvenida' });
-  }, error => {
-    console.log(error);
-  });
+    let f = {username: this.formgroup.get('userName').value, password: this.formgroup.get('pass').value};
+    this.auth.register(f,headers)
+      .subscribe(
+        rs => this.isLogged = rs,
+        er => console.log(er),
+        () => {
+          if (this.isLogged){
+            this.navCtrl.setRoot(HomePage, { ruta: 'Bienvenida' })
+            .then(data => console.log(data),
+            error => console.log(error));
+          } else {
+            console.log('Acceso denegado');
+          }
+        }
+      )
    
   }
 

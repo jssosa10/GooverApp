@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
-import { MenuService } from '../../service/menu.service';
 import { HomePage } from '../home/home';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage
   ({
@@ -15,14 +15,18 @@ import { HomePage } from '../home/home';
 export class CursosPage {
 
   myInput = "";
+  username: string;
   cursos: any;
   id:any;
+  institucion:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menuService: MenuService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth:AuthService) {
     this.id=this.navParams.get('id');
     if (!this.navParams.get('menu')) {
       navCtrl.setRoot(HomePage, { ruta: 'Cursos' })
     }
+    this.username=auth.getUserName();
+    this.institucion=this.id;
   }
 
   setItems() {
@@ -47,7 +51,7 @@ export class CursosPage {
   }
 
   onCurso(id) {
-    this.navCtrl.setRoot(HomePage, { ruta: 'Curso', parametros: { id: '2', menu: true } })
+    this.navCtrl.push('Curso', { id: '2',menu:true});
   }
 
   filterItems(ev: any) {

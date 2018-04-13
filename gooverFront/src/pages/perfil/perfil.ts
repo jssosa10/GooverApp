@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams, Platform } from 'ionic-angular';
-import { MenuService } from '../../service/menu.service';
 import { HomePage } from '../home/home';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 
@@ -21,7 +20,7 @@ export class PerfilPage {
   login: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public menuService: MenuService, public formBuilder: FormBuilder) {
+     public formBuilder: FormBuilder) {
 
 
       this.formgroup = formBuilder.group({

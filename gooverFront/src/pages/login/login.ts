@@ -1,7 +1,6 @@
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
-import { MenuService } from '../../service/menu.service';
 import { HomePage } from '../home/home';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 
@@ -22,7 +21,7 @@ export class LoginPage {
   options: RequestOptions;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public menuService: MenuService, public formBuilder: FormBuilder, public http: Http) {
+     public formBuilder: FormBuilder, public http: Http) {
     // if(!this.navParams.get('menu'))
     //{
     // navCtrl.setRoot(HomePage,{ruta:'Login'})

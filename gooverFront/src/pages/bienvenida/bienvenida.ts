@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage, NavParams, App } from 'ionic-angular';
-import { MenuService } from '../../service/menu.service';
+import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage
   ({
@@ -13,11 +13,13 @@ import { HomePage } from '../home/home';
 })
 export class BienvenidaPage {
 
+  username: string;
   constructor(public navCtrl: NavController, public navParams: NavParams
-    , public menuService: MenuService, public appCtrl:App) {
+    , private auth:AuthService) {
     if (!this.navParams.get('menu')) {
       navCtrl.setRoot(HomePage, { ruta: 'Bienvenida' })
     }
+    this.username=auth.getUserName();
   }
 
   onEmpezar() {

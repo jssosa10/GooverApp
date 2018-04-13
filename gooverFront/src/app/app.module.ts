@@ -12,9 +12,11 @@ import { RegistroPage } from '../pages/registro/registro';
 import { LoginPageModule } from '../pages/login/login.module';
 import { InicioPageModule } from '../pages/inicio/inicio.module';
 import { RegistroPageModule } from '../pages/registro/registro.module';
-import { MenuService } from '../service/menu.service';
 import { PerfilPageModule } from '../pages/perfil/perfil.module';
 import { HttpModule } from '@angular/http';
+import { AuthService } from '../services/auth.service';
+import { BienvenidaPage } from '../pages/bienvenida/bienvenida';
+import { BienvenidaPageModule } from '../pages/bienvenida/bienvenida.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { HttpModule } from '@angular/http';
     InicioPageModule,
     RegistroPageModule,
     PerfilPageModule,
+    BienvenidaPageModule,
     HttpModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -41,7 +44,7 @@ import { HttpModule } from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
-    MenuService,
+    AuthService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

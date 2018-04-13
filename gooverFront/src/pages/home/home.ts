@@ -7,7 +7,6 @@ import { BienvenidaPage } from '../bienvenida/bienvenida';
 import { CursosPage } from '../cursos/cursos';
 import { CursoDetailPage } from '../cursoDetail/cursoDetail';
 import { PerfilPage } from '../perfil/perfil';
-import { MenuService } from '../../service/menu.service';
 
 
 @Component({
@@ -27,8 +26,7 @@ export class HomePage {
   subscription: any;
   private width;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private menuService: MenuService, private platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
     this.rootPage = BienvenidaPage;
     this.inicioPage = InicioPage;
     this.loginPage = LoginPage;
@@ -36,7 +34,6 @@ export class HomePage {
     this.bienvenidaPage = BienvenidaPage;
     this.cursosPage = CursosPage;
     this.perfilPage = PerfilPage;
-    menuService.setMenuActivo();
 
 
     if (this.navParams.get('ruta')) {
@@ -51,18 +48,15 @@ export class HomePage {
 
     platform.ready().then((readySource) => {
       this.width = platform.width();
-      console.log('Width: ' + platform.width());
-      console.log('Height: ' + platform.height());
     });
 
   }
 
   ngOnInit() {
-    this.subscription = this.menuService.getNavChangeEmitter()
-      .subscribe(item => this.openPage(item));
   }
 
   openPage(p) {
+    console.log(p);
     this.rootPage = p;
   }
 
