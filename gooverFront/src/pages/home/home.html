@@ -1,17 +1,9 @@
 <ion-split-pane>
-    <ion-header>
-        <ion-navbar color="toolbar" align-title="center">
-            <button ion-button menuToggle>
-                <ion-icon name="menu" style="color : white;"></ion-icon>
-            </button>
-            <p style="color:white; float: right;">Hola, PIPO</p>
-        </ion-navbar>
-    </ion-header>
     <ion-menu [content]="content" persistent='true'>
         <ion-header>
             <ion-navbar color="toolbar">
                 <ion-title>
-                    <img src="../assets/img/goover1.png" style="max-height: 100px; max-width: 150px">
+                    <img src="../assets/img/goover1.png" [ngStyle]="getMyStyles()">
                 </ion-title>
             </ion-navbar>
         </ion-header>
@@ -25,7 +17,7 @@
                 <button ion-item menuClose (click)="openPage(loginPage)">
                     <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Mis cursos
                 </button>
-                <hr> 
+                <hr>
                 <button ion-item menuClose (click)="openPage(registroPage)">
                     <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Más cursos
                 </button>

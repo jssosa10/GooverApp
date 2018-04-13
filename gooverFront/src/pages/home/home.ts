@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { InicioPage } from '../inicio/inicio';
 import { RegistroPage } from '../registro/registro';
@@ -25,26 +25,35 @@ export class HomePage {
   private cursosPage;
   private perfilPage;
   subscription: any;
+  private width;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menuService: MenuService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private menuService: MenuService, private platform: Platform) {
     this.rootPage = BienvenidaPage;
     this.inicioPage = InicioPage;
     this.loginPage = LoginPage;
     this.registroPage = RegistroPage;
     this.bienvenidaPage = BienvenidaPage;
     this.cursosPage = CursosPage;
-    this.perfilPage= PerfilPage;
+    this.perfilPage = PerfilPage;
     menuService.setMenuActivo();
- 
-    if (this.navParams.get('ruta')){
+
+
+    if (this.navParams.get('ruta')) {
       if (this.navParams.get('ruta') === 'Cursos') {
-       this.parametros=this.navParams.get('parametros');
+        this.parametros = this.navParams.get('parametros');
       }
       else {
-        this.parametros={menu:true};       
+        this.parametros = { menu: true };
       }
       this.rootPage = navParams.get('ruta');
     }
+
+    platform.ready().then((readySource) => {
+      this.width = platform.width();
+      console.log('Width: ' + platform.width());
+      console.log('Height: ' + platform.height());
+    });
 
   }
 
@@ -57,10 +66,33 @@ export class HomePage {
     this.rootPage = p;
   }
 
-  desloguear(){
+  desloguear() {
 
   }
 
+  altura() {
+    if (this.width > 912) {
+      return '130px';
+    }
+    else {
+      return '270px';
+    }
+  }
 
+  ancho() {
+    if (this.width > 912) {
+      return '150px';
+    }
+    else {
+      return '270px';
+    }
+  }
 
+  getMyStyles() {
+    let myStyles = {
+      'max-width': this.altura(),
+      'max-height': this.ancho()
+    };
+    return myStyles;
+  }
 }

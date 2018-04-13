@@ -7,7 +7,9 @@
         <ion-scroll style="height:80vh;" scrollY="true">
             <ion-list scroll="true">
                 <ion-card>
+                    <button ion-button (click)="showPromptTema()">Agregar tema</button>
                     <ion-list-header *ngFor="let tema of curso.temas; let i = index" no-lines no-padding>
+                            
                         <!-- Toggle Button -->
                         <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': tema.open, 'section': !tema.open}">
                             <ion-icon item-left name="arrow-forward" *ngIf="!tema.open"></ion-icon>
@@ -16,6 +18,7 @@
                         </button>
 
                         <ion-list *ngIf="tema.recursos && tema.open" no-lines>
+                                <button ion-button (click)="showPromptSubtema(i)">Agregar subtema</button>
                             <!-- Second Level -->
                             <ion-list-header *ngFor="let recurso of tema.recursos; let j = index" style="padding-top:10px">
                                 <!-- Toggle Button -->
@@ -30,7 +33,7 @@
 
                             </ion-list-header>
                             <ion-list-header style="padding-top:10px">
-                                <ion-icon name="add-circle" style="font-size:3em"></ion-icon>
+                                    <button ion-button color="secondary">Agregar recurso</button>
                             </ion-list-header>
                         </ion-list>
 

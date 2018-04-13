@@ -8,12 +8,9 @@
                 <ion-scroll style="height:80vh;" scrollY="true">
                     <ion-list scroll="true">
                         <ion-item *ngFor="let curso of cursos">
-                            <ion-thumbnail item-left>
-                                <img src="../assets/cursos/{{curso.img}}">
-                            </ion-thumbnail>
                             <h1>{{curso.titulo}}</h1>
-                            <p>{{curso.descripcion}}</p>
                             <button style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px" (click)="onCurso()" item-right>Agregar</button>
+                            <button ion-button color="secondary" style="padding-top: 25px; padding-bottom: 25px" (click)="onCurso()" item-right>Ver información</button>
                         </ion-item>
                     </ion-list>
                 </ion-scroll>

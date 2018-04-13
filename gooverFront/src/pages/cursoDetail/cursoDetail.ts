@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage, NavParams } from 'ionic-angular';
+import { NavController, IonicPage, NavParams,AlertController } from 'ionic-angular';
 
 @IonicPage
 ({
@@ -15,7 +15,7 @@ export class CursoDetailPage {
     curso:any;
     id:any;
     
-  constructor(public navCtrl: NavController,public navParams: NavParams) {
+  constructor(public navCtrl: NavController,public navParams: NavParams,public alertCtrl: AlertController) {
     this.id=this.navParams.get('id');
     this.curso={titulo:'Calculo Diferencial',descripcion:'Curso chevere de HTML',img:'pipo.jpg',
     temas:[{nombre:'limites',recursos:[
@@ -40,4 +40,56 @@ export class CursoDetailPage {
     //this.navCtrl.setRoot(RegistroPage);
   }
 
+  showPromptTema() {
+    let prompt = this.alertCtrl.create({
+      title: 'Nuevo tema',
+      message: "Ingrese un nuevo tema para el curso: "+ this.curso.titulo,
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Nombre del nuevo tema'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar'
+        },
+        {
+          text: 'Guardar',
+          handler: data => {
+            console.log('data '+ data.title);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  showPromptSubtema(i) {
+    let prompt = this.alertCtrl.create({
+      title: 'Nuevo tema',
+      message: "Ingrese un nuevo subtema para el tema: "+ this.curso.temas[i].nombre,
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Nombre del nuevo subtema'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancelado');
+          }
+        },
+        {
+          text: 'Guardar',
+          handler: data => {
+            console.log('data '+ data.title);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 }

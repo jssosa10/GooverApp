@@ -17,16 +17,16 @@ export class InstitucionesPage {
   instituciones: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuService: MenuService) {
-    if (!this.navParams.get('menu')) {
-      navCtrl.setRoot(HomePage, { ruta: 'Instituciones' })
-    }
+  //  if (!this.navParams.get('menu')) {
+   //   navCtrl.setRoot(HomePage, { ruta: 'Instituciones' })
+    //}
   }
 
   setItems() {
     this.instituciones = [
-      { titulo: 'Universidad de los Andes', img: 'andes.png'},
-      { titulo: 'Universidad Nacional',  img: 'unal.png' },
-      { titulo: 'Universidad Javeriana',  img: 'javeriana.png' }
+      { titulo: 'Universidad de los Andes', img: 'andes.png' },
+      { titulo: 'Universidad Nacional', img: 'unal.png' },
+      { titulo: 'Universidad Javeriana', img: 'javeriana.png' }
     ];
   }
 
@@ -43,10 +43,15 @@ export class InstitucionesPage {
     let val = ev.target.value;
 
     if (val && val.trim() !== '') {
-      this.instituciones = this.instituciones.filter(function(institucion) {
+      this.instituciones = this.instituciones.filter(function (institucion) {
         return institucion.titulo.toLowerCase().includes(val.toLowerCase());
       });
     }
+  }
+
+  volverAtras() {
+    console.log('llegaAtras')
+    this.navCtrl.pop();
   }
 
 }
