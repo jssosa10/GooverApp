@@ -3,7 +3,6 @@ import json
 import ConfigParser
 from flaskext.mysql import MySQL
 import hashlib
-import redis
 from flask import Flask, render_template, request, redirect
 from flask_cors import CORS, cross_origin
 
@@ -18,13 +17,12 @@ app.config['MYSQL_DATABASE_PASSWORD'] = config.get('MySQL', 'passwd')
 mysql.init_app(app)
 CORS(app)
 
-r = redis.Redis()
 @app.route("/courses", methods=['GET'])
 def getCourses():
 	id = request.args.get('id')
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select id,titulo from cursos where U_ID=%d",id)
+	cursor.execute("select id,titulo from cursos where U_ID="+str(id))
 	lista = list(cursor.fetchall())
 	lista = [{'id':str(x[0]),'titulo':str(x[1])} for x in lista]
 	return json.dumps(lista)
@@ -91,14 +89,6 @@ def do_regiter():
 		except:
 			conn.rollback()
 		m = hashlib.md5()
-#	m.update(request.form['password'])
-#	if r.get(request.form['username']):
-#		m = hashlib.md5()
-##		return json.dumps('error')
-#	else: 
-##		print m.hexdigest()
-#		r.set(request.form['username'],m.hexdigest())
-#		m = hashlib.md5()
 	conn.close()
 	return json.dumps(user), 200
 
