@@ -35,6 +35,59 @@ def getAllC():
 	lista = list(cursor.fetchall())
 	lista = [{'id':str(x[0]),'titulo':str(x[1])} for x in lista]
 	return json.dumps(lista)
+@app.route("/course",methods=['GET'])
+def getCourse():
+	id = request.args.get('id')
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute("select ID_T from cursotema where ID_C = "+str(id))
+	listaidtemas = [str(x[0]) for x in  list(cursor.fetchall())]
+	nombrestemas = [get_tema_nombre(i) for i in listaidtemas]
+	idsubtemas = [get_subtemas(i) for i in listaidtemas]
+	nombresubtemas = [get_subtema_nombre(i) for i in idsubtemas]
+	idrecursos = [get_recursos_subtema(i) for i in idsubtemas]
+	nombrerecursossub = [[get_recurso_nombre(i) for i in x] for x in idrecursos]
+	print nombrerecursossub
+	return json.dumps("ok")
+
+def get_tema_nombre(i):
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute("select nombre from tema where ID = "+i)
+	x = cursor.fetchone()
+	return str(x[0])
+
+def get_subtemas(i):
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute("select ID_S from temasubtema where ID_T = "+i)
+	return [str(x[0]) for x in list(cursor.fetchall)]
+
+def get_subtema_nombre(i):
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute("select nombre from subtema where ID = "+i)
+	x = cursor.fetchone()
+	return str(x[0])
+
+def get_recursos_subtema(i):
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute("select ID_R from subtemarecurso where ID_S = "+i)
+	return [str(x[0]) for x in list(cursor.fetchall)]
+
+def get_recursos_tema(i):
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute("select ID_R from temarecurso where ID_S = "+i)
+	return [str(x[0]) for x in list(cursor.fetchall)]
+	
+def get_recurso_nombre(i):
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute("select recurso from subtema where ID = "+i)
+	x = cursor.fetchone()
+	return str(x[0])
 
 @app.route("/material", methods=['GET'])
 def getMaterial():
