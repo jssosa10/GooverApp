@@ -43,7 +43,7 @@ def getMaterial():
 @app.route('/instituciones', methods=['GET'])
 def get_unis():
 	conn = mysql.connect()
-        cursor =conn.cursor()
+    cursor = conn.cursor()
 	cursor.execute("select * from instituciones")
 	lista = list(cursor.fetchall())
 	lista = [{'id':str(x[0]),'titulo':str(x[1]),'img':str(x[2])} for x in lista]
