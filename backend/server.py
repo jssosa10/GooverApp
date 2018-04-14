@@ -20,10 +20,14 @@ CORS(app)
 
 r = redis.Redis()
 @app.route("/courses", methods=['GET'])
-
 def getCourses():
-	return json.dumps(os.listdir('/home/ubuntu/courses'))
-
+	id = request.args.get('id')
+	conn = mysql.connect()
+    cursor =conn.cursor()
+	cursor.execute("select id,titulo from cursos where U_ID=%d",id)
+	lista = list(cursor.fetchall())
+	lista = [{'id':str(x[0]),'titulo':str(x[1])} for x in lista]
+	return json.dumps(lista)
 
 @app.route("/material", methods=['GET'])
 def getMaterial():
@@ -40,9 +44,9 @@ def getMaterial():
 def get_unis():
 	conn = mysql.connect()
         cursor =conn.cursor()
-	cursor.execute("select titulo, img from instituciones")
+	cursor.execute("select * from instituciones")
 	lista = list(cursor.fetchall())
-	lista = [{'titulo':str(x[0]),'img':str(x[1])} for x in lista]
+	lista = [{'id':str(x[0]),'titulo':str(x[1]),'img':str(x[2])} for x in lista]
 	return json.dumps(lista)
 @app.route('/login', methods=['POST'])
 def do_login():
