@@ -48,12 +48,10 @@ def do_login():
 	cursor =conn.cursor()
         cursor.execute("select password from usuarios where username='"+user+"'")
 	pss = cursor.fetchone()
-	print prs
-	print pss[0]
 	if pss[0]==prs:
 		m = hashlib.md5()
 		conn.close()
-		return json.dumps('ok'), 200
+		return json.dumps(user), 200
 	else:
 		m = hashlib.md5()
 		conn.close()
@@ -90,7 +88,7 @@ def do_regiter():
 #		r.set(request.form['username'],m.hexdigest())
 #		m = hashlib.md5()
 	conn.close()
-	return json.dumps('ok'), 200
+	return json.dumps(user), 200
 
 if __name__ == "__main__":
 
