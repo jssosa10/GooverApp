@@ -49,8 +49,9 @@ def getCourse():
 	print idsubtemas
 	nombresubtemas = [[get_subtema_nombre(i) for i in x] for x in idsubtemas]
 	print nombresubtemas
-	idrecursos = [get_recursos_subtema(i) for i in idsubtemas]
-	nombrerecursossub = [[get_recurso_nombre(i) for i in x] for x in idrecursos]
+	idrecursos = [[get_recursos_subtema(i) for i in x] for x in idsubtemas]
+	print idrecursos
+	nombrerecursossub = [[[get_recurso_nombre(i) for i in x] for x in y] for y in idrecursos]
 	print nombrerecursossub
 	return json.dumps("ok")
 
