@@ -36,6 +36,14 @@ def getMaterial():
 	else:
 		return json.dumps('not ok')
 
+@app.route('/instituciones', methods=['GET'])
+def get_unis():
+	conn = mysql.connect()
+        cursor =conn.cursor()
+	cursor.execute("select titulo, img from instituciones")
+	lista = list(cursor.fetchall())
+	lista = [{'titulo':str(x[0]),'img':str(x[1])} for x in lista]
+	return json.dumps(lista)
 @app.route('/login', methods=['POST'])
 def do_login():
 	m = hashlib.md5()
