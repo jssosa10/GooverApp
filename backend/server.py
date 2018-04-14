@@ -42,18 +42,13 @@ def getCourse():
    	cursor =conn.cursor()
 	cursor.execute("select ID_T from cursotema where ID_C = "+str(id))
 	listaidtemas = [str(x[0]) for x in  list(cursor.fetchall())]
-	print listaidtemas
 	nombrestemas = [get_tema_nombre(i) for i in listaidtemas]
-	print nombrestemas
 	idsubtemas = [get_subtemas(i) for i in listaidtemas]
-	print idsubtemas
 	nombresubtemas = [[get_subtema_nombre(i) for i in x] for x in idsubtemas]
-	print nombresubtemas
 	idrecursos = [[get_recursos_subtema(i) for i in x] for x in idsubtemas]
-	print idrecursos
 	nombrerecursossub = [[[get_recurso_nombre(i) for i in x] for x in y] for y in idrecursos]
-	print nombrerecursossub
-	return json.dumps("ok")
+	res = {'temas':[{'nombre':nombrestemas[i],'subtemas':[{'nombre':nombresubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1]} for k in range(len(idrecursos)) ]} for j in range(len(idsubtemas))]} for i in range(len(listaidtemas))]}
+	return json.dumps(res)
 
 def get_tema_nombre(i):
 	conn = mysql.connect()
@@ -90,9 +85,9 @@ def get_recursos_tema(i):
 def get_recurso_nombre(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select nombre from recursos where ID = "+i)
+	cursor.execute("select nombre,calificacion from recursos where ID = "+i)
 	x = cursor.fetchone()
-	return str(x[0])
+	return x
 
 @app.route("/material", methods=['GET'])
 def getMaterial():
