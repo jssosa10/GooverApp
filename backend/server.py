@@ -20,6 +20,7 @@ CORS(app)
 @app.route("/courses", methods=['GET'])
 def getCourses():
 	id = request.args.get('id')
+	print id
 	conn = mysql.connect()
    	cursor =conn.cursor()
 	cursor.execute("select id,titulo from cursos where U_ID = %d",int(id))
