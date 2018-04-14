@@ -1,11 +1,21 @@
 import os
 import json
+import ConfigParser
+from flaskext.mysql import MySQL
 import hashlib
 import redis
 from flask import Flask, render_template, request, redirect
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+mysql = MySQL()
+config = ConfigParser.ConfigParser()
+config.read('config.cfg')
+app.config['MYSQL_DATABASE_HOST'] = config.get('MySQL', 'host') 
+app.config['MYSQL_DATABASE_DB'] = config.get('MySQL', 'db')
+app.config['MYSQL_DATABASE_USER'] = config.get('MySQL', 'user') 
+app.config['MYSQL_DATABASE_PASSWORD'] = config.get('MySQL', 'passwd') 
+mysql.init_app(app)
 CORS(app)
 
 r = redis.Redis()
@@ -29,27 +39,47 @@ def getMaterial():
 @app.route('/login', methods=['POST'])
 def do_login():
 	m = hashlib.md5()
-	m.update(request.form['password'])
-	print m.hexdigest()
-	print request.form['username'].decode("utf-8")
-	if r.get(request.form['username']).decode("utf-8") == m.hexdigest():
+	content = request.get_json(silent=True)
+	passw = content['password']
+        user = content['username']
+	m.update(passw)
+	prs =  m.hexdigest()
+	conn = mysql.connect()
+	cursor =conn.cursor()
+        cursor.execute("select password from usuarios where username='"+user+"'")
+	pss = cursor.fetchone()
+	print prs
+	print pss[0]
+	if pss[0]==prs:
 		m = hashlib.md5()
+		conn.close()
 		return json.dumps('ok'), 200
 	else:
 		m = hashlib.md5()
-		return json.dumps('error'), 500	
+		conn.close()
+		return json.dumps('error'), 403	
 @app.route('/register',methods=['POST'])
 def do_regiter():
 	m = hashlib.md5()
 	content = request.get_json(silent=True)
 	passw = content['password']
 	user = content['username']
+	conn = mysql.connect()
+	cursor =conn.cursor()
+	cursor.execute("select password from usuarios where username='"+user+"'")
+	pss = cursor.fetchone()
 	m.update(passw)
-	if r.get(user):
+	if not  pss is None: 
 		m = hashlib.md5()
-		return json.dumps('error'), 500
+		conn.close()
+		return json.dumps('error'), 412 
 	else:
-		r.set(user,m.hexdigest())
+		try:
+			prs = m.hexdigest()
+			cursor.execute("insert into usuarios values(null,%s,%s)",(user,prs))
+			conn.commit()
+		except:
+			conn.rollback()
 		m = hashlib.md5()
 #	m.update(request.form['password'])
 #	if r.get(request.form['username']):
@@ -59,6 +89,7 @@ def do_regiter():
 ##		print m.hexdigest()
 #		r.set(request.form['username'],m.hexdigest())
 #		m = hashlib.md5()
+	conn.close()
 	return json.dumps('ok'), 200
 
 if __name__ == "__main__":
