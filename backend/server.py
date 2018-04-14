@@ -20,10 +20,18 @@ CORS(app)
 @app.route("/courses", methods=['GET'])
 def getCourses():
 	id = request.args.get('id')
-	print id
 	conn = mysql.connect()
    	cursor =conn.cursor()
 	cursor.execute("select id,titulo from cursos where U_ID = "+str(id))
+	lista = list(cursor.fetchall())
+	lista = [{'id':str(x[0]),'titulo':str(x[1])} for x in lista]
+	return json.dumps(lista)
+
+@app.route("/AllCourses", methods=['GET'])
+def getAllC():
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute("select id,titulo from cursos")
 	lista = list(cursor.fetchall())
 	lista = [{'id':str(x[0]),'titulo':str(x[1])} for x in lista]
 	return json.dumps(lista)
