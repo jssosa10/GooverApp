@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams, Platform } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage
   ({
@@ -14,23 +15,23 @@ import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/fo
 export class PerfilPage {
 
   formgroup: FormGroup;
-  userName: AbstractControl;
   pass: AbstractControl;
   pass2: AbstractControl;
-  login: string;
+  username: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-     public formBuilder: FormBuilder) {
-
+     public formBuilder: FormBuilder, private auth:AuthService) {
+      if (!this.navParams.get('menu')) {
+        navCtrl.setRoot(HomePage, { ruta: 'Perfil' })
+      }
 
       this.formgroup = formBuilder.group({
-        userName: ['', Validators.required],
         pass: ['', Validators.required],
         pass2: ['', Validators.required]
       })
-    this.userName= this.formgroup.controls['userName'];
     this.pass= this.formgroup.controls['pass'];
     this.pass2= this.formgroup.controls['pass2'];
+    this.username=auth.getUserName();
     }
   
 

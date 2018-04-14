@@ -5,25 +5,29 @@ import { AuthService } from '../../services/auth.service';
 
 @IonicPage
   ({
-    name: 'Cursos',
-    segment: 'cursos'
+    name: 'CursosInstitucion',
+    segment: 'institucion/:id/cursos'
   })
 @Component({
-  selector: 'page-cursos',
-  templateUrl: 'cursos.html'
+  selector: 'page-cursosInst',
+  templateUrl: '../cursos/cursos.html'
 })
-export class CursosPage {
+export class CursosInstitucionPage {
 
   myInput = "";
   username: string;
   cursos: any;
+  id:any;
   institucion:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth:AuthService) {
-    if (!this.navParams.get('menu')) {
-      navCtrl.setRoot(HomePage, { ruta: 'Cursos' })
-    }
+    console.log('al menos');
     this.username=auth.getUserName();
+    this.id=this.navParams.get('id');
+    if (!this.navParams.get('menu')) {
+      navCtrl.setRoot(HomePage, { ruta: 'CursosInstitucion', parametros:{ id: '2',menu:true} });
+    }   
+    this.institucion=this.id;
   }
 
   setItems() {

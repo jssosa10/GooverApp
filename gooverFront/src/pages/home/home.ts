@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { InicioPage } from '../inicio/inicio';
-import { RegistroPage } from '../registro/registro';
 import { BienvenidaPage } from '../bienvenida/bienvenida';
 import { CursosPage } from '../cursos/cursos';
-import { CursoDetailPage } from '../cursoDetail/cursoDetail';
 import { PerfilPage } from '../perfil/perfil';
+import { InstitucionesPage } from '../instituciones/instituciones';
 
 
 @Component({
@@ -17,27 +15,27 @@ export class HomePage {
 
   private rootPage;
   private parametros;
-  private inicioPage;
   private loginPage;
-  private registroPage;
   private bienvenidaPage;
   private cursosPage;
   private perfilPage;
-  subscription: any;
+  private institucionesPage;
   private width;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
     this.rootPage = BienvenidaPage;
-    this.inicioPage = InicioPage;
     this.loginPage = LoginPage;
-    this.registroPage = RegistroPage;
     this.bienvenidaPage = BienvenidaPage;
     this.cursosPage = CursosPage;
     this.perfilPage = PerfilPage;
+    this.institucionesPage= InstitucionesPage;
 
-
+    console.log( this.navParams);
+    console.log('oh oh '+ this.navParams.get('ruta'));
     if (this.navParams.get('ruta')) {
-      if (this.navParams.get('ruta') === 'Cursos') {
+ 
+      if (this.navParams.get('ruta') === 'CursosInstitucion'|| this.navParams.get('ruta') === 'Curso') {
+        console.log('llega')
         this.parametros = this.navParams.get('parametros');
       }
       else {
@@ -61,7 +59,7 @@ export class HomePage {
   }
 
   desloguear() {
-
+    this.navCtrl.setRoot('Login');
   }
 
   altura() {

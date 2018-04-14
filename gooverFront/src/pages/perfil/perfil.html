@@ -1,8 +1,16 @@
+<ion-header>
+
+    <ion-navbar color="toolbar">
+        <button ion-button menuToggle>
+            <ion-icon name="menu" style="color : white;"></ion-icon>
+        </button>
+        <p style="color:white; float: right;">Hola, {{username}}</p>
+    </ion-navbar>
+
+</ion-header>
 <ion-content>
     <ion-card>
-        <h1 class="center">
-            {{login}}
-        </h1>
+        <h1 style="text-align: center">{{username}}</h1>
 
         <form [formGroup]="formgroup">
 

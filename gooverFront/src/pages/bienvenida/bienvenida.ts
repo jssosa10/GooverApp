@@ -24,7 +24,7 @@ export class BienvenidaPage {
 
   onEmpezar() {
    // this.menuService.emitNavChangeEvent('Instituciones')
-   this.navCtrl.push('Instituciones', {menu:true});
+   this.navCtrl.setRoot(HomePage, { ruta: 'Cursos' })
    //this.navCtrl.setRoot(HomePage, { ruta: 'Instituciones', parametros: { id: '2', menu: true } })
   }
 

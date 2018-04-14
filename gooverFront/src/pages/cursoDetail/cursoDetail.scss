@@ -1,4 +1,16 @@
 page-cursoDetail {
+    .tema
+    {
+        //background: url('../assets/img/bkTema.png') transparent;
+        position: relative;
+        background: url('../assets/img/bkTema1.png') transparent;
+        background-repeat:   repeat;
+    }
+
+    .subtema
+    {
+        background: url('../assets/img/bkSubtema.png') transparent;
+    }
     .accordion-list {
         background: color($colors, light);
         height: 100%;
