@@ -26,7 +26,7 @@ export class AuthService {
           this.loggedIn = false;
         } else {
           // localStorage.setItem('token', res);
-          this.userName = userInfo.user;
+          this.userName = userInfo.username;
           this.loggedIn = true;
         }
         return this.loggedIn;
@@ -44,7 +44,7 @@ export class AuthService {
           this.loggedIn = false;
         } else {
           //localStorage.setItem('token', res);
-          this.userName = userInfo.user;
+          this.userName = userInfo.username;
           this.loggedIn = true;
         }
         return this.loggedIn;
