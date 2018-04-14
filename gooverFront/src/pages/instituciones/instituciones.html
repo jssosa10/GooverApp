@@ -22,7 +22,8 @@
                                 <img src="../assets/instituciones/{{institucion.img}}">
                             </ion-thumbnail>
                             <h1 col-sm-0 col-md-6 >{{institucion.titulo}}</h1>
-                            <button col-sm-6 col-md-3 style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px" (click)="onInstitucion()" item-right>Ver cursos</button>
+                            <h3>{{institucion.id}}</h3>
+                            <button col-sm-6 col-md-3 style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px" (click)="onInstitucion(institucion.id)" item-right>Ver cursos</button>
                         </ion-item>
                     </ion-list>
                 </ion-scroll>
