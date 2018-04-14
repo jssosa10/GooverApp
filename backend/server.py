@@ -61,7 +61,7 @@ def get_subtemas(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
 	cursor.execute("select ID_S from temasubtema where ID_T = "+i)
-	return [str(x[0]) for x in list(cursor.fetchall)]
+	return [str(x[0]) for x in list(cursor.fetchall())]
 
 def get_subtema_nombre(i):
 	conn = mysql.connect()
@@ -74,13 +74,13 @@ def get_recursos_subtema(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
 	cursor.execute("select ID_R from subtemarecurso where ID_S = "+i)
-	return [str(x[0]) for x in list(cursor.fetchall)]
+	return [str(x[0]) for x in list(cursor.fetchall())]
 
 def get_recursos_tema(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
 	cursor.execute("select ID_R from temarecurso where ID_S = "+i)
-	return [str(x[0]) for x in list(cursor.fetchall)]
+	return [str(x[0]) for x in list(cursor.fetchall())]
 	
 def get_recurso_nombre(i):
 	conn = mysql.connect()
