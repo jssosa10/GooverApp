@@ -87,7 +87,7 @@ def get_recurso_nombre(i):
    	cursor =conn.cursor()
 	cursor.execute("select nombre,calificacion from recursos where ID = "+i)
 	x = cursor.fetchone()
-	return x
+	return (str(x[0]),str(float(x[1])))
 
 @app.route("/material", methods=['GET'])
 def getMaterial():
