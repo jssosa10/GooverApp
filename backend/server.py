@@ -23,7 +23,7 @@ def getCourses():
 	print id
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select id,titulo from cursos where U_ID = %d",int(id))
+	cursor.execute("select id,titulo from cursos where U_ID = "+str(id))
 	lista = list(cursor.fetchall())
 	lista = [{'id':str(x[0]),'titulo':str(x[1])} for x in lista]
 	return json.dumps(lista)
