@@ -47,7 +47,7 @@ export class InstitucionesPage {
   }
 
   onInstitucion(id) {
-    this.navCtrl.push('CursosInstitucion', { id: '2', menu: true });
+    this.navCtrl.push('CursosInstitucion', { id: id, menu: true });
   }
 
   filterItems(ev: any) {

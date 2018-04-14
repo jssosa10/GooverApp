@@ -19,6 +19,7 @@ import { RecursoCreatePageModule } from '../pages/recursoCreate/recursoCreate.mo
 import { HomePage } from '../pages/home/home';
 import { AutoresizeDirective } from '../services/autoresize';
 import { InstitucionesService } from '../services/instituciones.service';
+import { CursosService } from '../services/cursos.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { InstitucionesService } from '../services/instituciones.service';
     SplashScreen,
     AuthService,
     InstitucionesService,
+    CursosService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

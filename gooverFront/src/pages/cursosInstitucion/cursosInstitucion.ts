@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
+import { CursosService } from '../../services/cursos.service';
 
 @IonicPage
   ({
@@ -17,20 +18,35 @@ export class CursosInstitucionPage {
   myInput = "";
   username: string;
   cursos: any;
-  id:any;
-  institucion:string;
+  id: any;
+  institucion: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth:AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private curs: CursosService) {
     console.log('al menos');
-    this.username=auth.getUserName();
-    this.id=this.navParams.get('id');
+    this.username = auth.getUserName();
+    this.id = this.navParams.get('id');
     if (!this.navParams.get('menu')) {
-      navCtrl.setRoot(HomePage, { ruta: 'CursosInstitucion', parametros:{ id: '2',menu:true} });
-    }   
-    this.institucion=this.id;
+      navCtrl.setRoot(HomePage, { ruta: 'CursosInstitucion', parametros: { id: 'id', menu: true } });
+    }
+    this.institucion = this.id;
   }
 
   setItems() {
+    let headerOptions: any = { 'Content-Type': 'application/json' };
+    let headers = new Headers(headerOptions);
+    this.curs.getCursos(headers)
+      .subscribe(
+        rs => this.cursos = rs,
+        er => console.log(er),
+        () => {
+          if (this.cursos === 'error') {
+            console.log('Instituciones mal');
+
+          }
+        }
+      )
+
+
     this.cursos = [
       { titulo: 'HTML1', descripcion: 'Curso chevere de HTML', img: 'pipo.jpg' },
       { titulo: 'Cálculo Diferencial', descripcion: 'Curso chevere de Calculo Dif', img: 'pipo.jpg' },
@@ -52,7 +68,7 @@ export class CursosInstitucionPage {
   }
 
   onCurso(id) {
-    this.navCtrl.push('Curso', { id: '2',menu:true});
+    this.navCtrl.push('Curso', { id: '2', menu: true });
   }
 
   filterItems(ev: any) {
@@ -60,7 +76,7 @@ export class CursosInstitucionPage {
     let val = ev.target.value;
 
     if (val && val.trim() !== '') {
-      this.cursos = this.cursos.filter(function(curso) {
+      this.cursos = this.cursos.filter(function (curso) {
         return curso.titulo.toLowerCase().includes(val.toLowerCase());
       });
     }
