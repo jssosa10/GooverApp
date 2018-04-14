@@ -90,7 +90,7 @@ def get_recursos_tema(i):
 def get_recurso_nombre(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select recurso from recursos where ID = "+i)
+	cursor.execute("select nombre from recursos where ID = "+i)
 	x = cursor.fetchone()
 	return str(x[0])
 
