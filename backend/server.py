@@ -53,7 +53,7 @@ def getCourse():
 def get_tema_nombre(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select nombre from tema where ID = "+i)
+	cursor.execute("select nombre from temas where ID = "+i)
 	x = cursor.fetchone()
 	return str(x[0])
 
@@ -66,7 +66,7 @@ def get_subtemas(i):
 def get_subtema_nombre(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select nombre from subtema where ID = "+i)
+	cursor.execute("select nombre from subtemas where ID = "+i)
 	x = cursor.fetchone()
 	return str(x[0])
 
@@ -85,7 +85,7 @@ def get_recursos_tema(i):
 def get_recurso_nombre(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select recurso from subtema where ID = "+i)
+	cursor.execute("select recurso from recursos where ID = "+i)
 	x = cursor.fetchone()
 	return str(x[0])
 
