@@ -16,14 +16,14 @@ export class InstitucionesService {
         let url = `${this.url}/instituciones`;
 
         return this.http.get(url,new RequestOptions({ headers: headers }))
-            .map(res => res.text())
-            .map(res => {
-                if (res == "error" || res == "nofound") {
+            .map(res => res.json())
+            .map(data => {
+                if (data == "error" || data == "nofound") {
                     this.instituciones = 'error';
                 } else {
                     // localStorage.setItem('token', res);
-                    console.log(res);
-                    this.instituciones = res;
+                    console.log(data);
+                    this.instituciones = data;
                 }
                 return this.instituciones;
             });

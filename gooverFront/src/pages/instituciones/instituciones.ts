@@ -35,11 +35,7 @@ export class InstitucionesPage {
         () => {
           if (this.instituciones === 'error') {
             console.log('Instituciones mal');
-            this.instituciones = [
-              { titulo: 'Universidad de los Andes', img: 'andes.png' },
-              { titulo: 'Universidad Nacional', img: 'unal.png' },
-              { titulo: 'Universidad Javeriana', img: 'javeriana.png' }
-            ];
+            
           }
         }
       )
