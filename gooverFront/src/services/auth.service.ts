@@ -1,74 +1,67 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions,Headers } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-   userName: string;
-   loggedIn: boolean;
-   url = 'http://54.197.214.217:9000';
+  userName: string;
+  loggedIn: boolean;
+  url = 'http://54.197.214.217:9000';
 
-   constructor(private http: Http) {
-      this.userName = '';
-      this.loggedIn = false;
-   }
+  constructor(private http: Http) {
+    this.userName = '';
+    this.loggedIn = false;
+  }
 
-   register(userInfo, headers)
-   {
+  register(userInfo, headers) {
     let url = `${this.url}/register`;
     let iJon = JSON.stringify(userInfo);
 
-    return this.http.post(url, iJon,new RequestOptions({ headers: headers }))
-    .map(res => res.text())
-    .map(res => {
-       if (res=="error" || res=="nofound"){
-          this.loggedIn = false;
-       } else {
-         // localStorage.setItem('token', res);
-          this.userName = userInfo.user;
-          this.loggedIn = true;
-       }
-       return this.loggedIn;
-    });
-   }
-   
-   login(userInfo) {
-      let url = `${this.url}/login`;
-      let iJon = JSON.stringify(userInfo);
-
-      return this.http.post(url, iJon, {
-         headers: new Headers({
-            'Content-Type':'application/json'
-         })
-      })
+    return this.http.post(url, iJon, new RequestOptions({ headers: headers }))
       .map(res => res.text())
       .map(res => {
-         if (res=="error" || res=="nofound"){
-            this.loggedIn = false;
-         } else {
-            localStorage.setItem('token', res);
-           this.userName = userInfo.user;
-            this.loggedIn = true;
-         }
-         return this.loggedIn;
+        if (res == "error" || res == "nofound") {
+          this.loggedIn = false;
+        } else {
+          // localStorage.setItem('token', res);
+          this.userName = userInfo.user;
+          this.loggedIn = true;
+        }
+        return this.loggedIn;
       });
-   }
+  }
 
-   logout(): void {
-      localStorage.removeItem('token');
-      this.userName = '';
-      this.loggedIn = false;
-   }
+  login(userInfo, headers) {
+    let url = `${this.url}/login`;
+    let iJon = JSON.stringify(userInfo);
 
-   isLoggedIn() {
-      return this.loggedIn;
-   }
+    return this.http.post(url, iJon, new RequestOptions({ headers: headers }))
+      .map(res => res.text())
+      .map(res => {
+        if (res == "error" || res == "nofound") {
+          this.loggedIn = false;
+        } else {
+          //localStorage.setItem('token', res);
+          this.userName = userInfo.user;
+          this.loggedIn = true;
+        }
+        return this.loggedIn;
+      });
+  }
 
-   getUserName()
-   {
-     return 'usuario1';
-     //return this.userName;
-   }
+  logout(): void {
+    localStorage.removeItem('token');
+    this.userName = '';
+    this.loggedIn = false;
+  }
+
+  isLoggedIn() {
+    return this.loggedIn;
+  }
+
+  getUserName() {
+    return this.userName;
+  }
 }
