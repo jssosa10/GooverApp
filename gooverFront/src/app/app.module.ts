@@ -18,6 +18,7 @@ import { InstitucionesPageModule } from '../pages/instituciones/instituciones.mo
 import { RecursoCreatePageModule } from '../pages/recursoCreate/recursoCreate.module';
 import { HomePage } from '../pages/home/home';
 import { AutoresizeDirective } from '../services/autoresize';
+import { InstitucionesService } from '../services/instituciones.service';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AutoresizeDirective } from '../services/autoresize';
     StatusBar,
     SplashScreen,
     AuthService,
+    InstitucionesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

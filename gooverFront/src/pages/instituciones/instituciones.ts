@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
+import { InstitucionesService } from '../../services/instituciones.service';
 
 @IonicPage
   ({
@@ -17,19 +18,32 @@ export class InstitucionesPage {
   instituciones: any;
   username: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth:AuthService) {
-  if (!this.navParams.get('menu')) {
-     navCtrl.setRoot(HomePage, { ruta: 'Instituciones' })
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private instit: InstitucionesService) {
+    if (!this.navParams.get('menu')) {
+      navCtrl.setRoot(HomePage, { ruta: 'Instituciones' })
     }
-    this.username=auth.getUserName();
+    this.username = auth.getUserName();
   }
 
   setItems() {
-    this.instituciones = [
-      { titulo: 'Universidad de los Andes', img: 'andes.png' },
-      { titulo: 'Universidad Nacional', img: 'unal.png' },
-      { titulo: 'Universidad Javeriana', img: 'javeriana.png' }
-    ];
+    let headerOptions: any = { 'Content-Type': 'application/json' };
+    let headers = new Headers(headerOptions);
+    this.instit.getInstituciones(headers)
+      .subscribe(
+        rs => this.instituciones = rs,
+        er => console.log(er),
+        () => {
+          if (this.instituciones === 'error') {
+            console.log('Instituciones mal');
+            this.instituciones = [
+              { titulo: 'Universidad de los Andes', img: 'andes.png' },
+              { titulo: 'Universidad Nacional', img: 'unal.png' },
+              { titulo: 'Universidad Javeriana', img: 'javeriana.png' }
+            ];
+          }
+        }
+      )
+
   }
 
   ngOnInit() {
@@ -37,7 +51,7 @@ export class InstitucionesPage {
   }
 
   onInstitucion(id) {
-    this.navCtrl.push('CursosInstitucion', { id: '2',menu:true});
+    this.navCtrl.push('CursosInstitucion', { id: '2', menu: true });
   }
 
   filterItems(ev: any) {
