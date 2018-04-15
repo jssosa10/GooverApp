@@ -42,14 +42,20 @@ def getCourse():
    	cursor =conn.cursor()
 	cursor.execute("select ID_T from cursotema where ID_C = "+str(id))
 	listaidtemas = [str(x[0]) for x in  list(cursor.fetchall())]
+	idrecursostemas = [[get_recursos_tema(i) for i in x] for x in listaidtemas]
 	nombrestemas = [get_tema_nombre(i) for i in listaidtemas]
 	idsubtemas = [get_subtemas(i) for i in listaidtemas]
 	nombresubtemas = [[get_subtema_nombre(i) for i in x] for x in idsubtemas]
 	idrecursos = [[get_recursos_subtema(i) for i in x] for x in idsubtemas]
 	nombrerecursossub = [[[get_recurso_nombre(i) for i in x] for x in y] for y in idrecursos]
-	res = {'temas':[{'nombre':nombrestemas[i],'subtemas':[{'nombre':nombresubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1]} for k in range(len(idrecursos)) ]} for j in range(len(idsubtemas))]} for i in range(len(listaidtemas))]}
+	res = {'titulo': get_nombre_curso(str(id)),'temas':[{'nombre':nombrestemas[i],'subtemas':[{'nombre':nombresubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1]} for k in range(len(idrecursos)) ]} for j in range(len(idsubtemas))]} for i in range(len(listaidtemas))]}
 	return json.dumps(res)
-
+def get_nombre_curso(i):
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute("select titulo from cursos where ID = "+i)
+	x = cursor.fetchone()
+	return str(x[0])
 def get_tema_nombre(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
