@@ -42,7 +42,7 @@ def getCourse():
    	cursor =conn.cursor()
 	cursor.execute("select ID_T from cursotema where ID_C = "+str(id))
 	listaidtemas = [str(x[0]) for x in  list(cursor.fetchall())]
-	idrecursostemas = [[get_recursos_tema(i) for i in x] for x in listaidtemas]
+	#idrecursostemas = [[get_recursos_tema(i) for i in x] for x in listaidtemas]
 	nombrestemas = [get_tema_nombre(i) for i in listaidtemas]
 	idsubtemas = [get_subtemas(i) for i in listaidtemas]
 	nombresubtemas = [[get_subtema_nombre(i) for i in x] for x in idsubtemas]
