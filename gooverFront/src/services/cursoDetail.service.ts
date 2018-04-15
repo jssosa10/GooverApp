@@ -5,18 +5,17 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class CursosService {
+export class CursoDetailService {
     url = 'http://54.197.214.217:9000';
 
     cursos: any;
     constructor(private http: Http) {
     }
 
-    getCursos(headers, id) {
-        let url = `${this.url}/AllCourses`;
-        if (id!==undefined) {
-            url = `${this.url}/courses?id=` + id;
-        }
+    getCurso(headers, id) {
+
+        let url = `${this.url}/course?id=` + id;
+
         return this.http.get(url, { headers: headers })
             .map(res => res.json())
             .map(data => {
@@ -25,6 +24,7 @@ export class CursosService {
                 } else {
                     // localStorage.setItem('token', res);
                     this.cursos = data;
+                    console.log(data);
                 }
                 return this.cursos;
             });

@@ -20,6 +20,7 @@ import { HomePage } from '../pages/home/home';
 import { AutoresizeDirective } from '../services/autoresize';
 import { InstitucionesService } from '../services/instituciones.service';
 import { CursosService } from '../services/cursos.service';
+import { CursoDetailService } from '../services/cursoDetail.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CursosService } from '../services/cursos.service';
     AuthService,
     InstitucionesService,
     CursosService,
+    CursoDetailService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

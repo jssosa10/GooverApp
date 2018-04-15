@@ -18,7 +18,8 @@ export class InstitucionesPage {
   instituciones: any;
   username: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private instit: InstitucionesService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, 
+    private instit: InstitucionesService) {
     if (!this.navParams.get('menu')) {
       navCtrl.setRoot(HomePage, { ruta: 'Instituciones' })
     }
@@ -35,7 +36,6 @@ export class InstitucionesPage {
         () => {
           if (this.instituciones === 'error') {
             console.log('Instituciones mal');
-            
           }
         }
       )
