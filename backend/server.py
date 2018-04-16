@@ -164,9 +164,10 @@ def do_regiter():
 @app.route ('/recurso',methods=['POST'])
 def upload_recurso():
 	print request.files
+	print request.files[0]
 	for file in request.files:
 		try:
-			print file
+			print ffile
 			output = upload_file_to_s3(file, app.config["S3_BUCKET"])
 			print output
 		except:
