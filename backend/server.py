@@ -97,9 +97,9 @@ def get_recursos_tema(i):
 def get_recurso_nombre(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select nombre,calificacion,tipo from recursos where ID = "+i)
+	cursor.execute("select nombre,tipo from recursos where ID = "+i)
 	x = cursor.fetchone()
-	return (str(x[0]),str(float(x[1])),str(x[2]))
+	return (str(x[0]),str(4.0),str(x[2]))
 
 @app.route("/material", methods=['GET'])
 def getMaterial():
@@ -174,7 +174,6 @@ def upload_recurso():
 		file_name = 'tmp/%s' % base_file_name
 		file.save(file_name)
 		resp = s3.upload(base_file_name, open(file_name),bucket = 'gooverlabfiles')
-		print resp
 	return json.dumps('ALGO PASO')
 	
 
