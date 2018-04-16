@@ -99,7 +99,9 @@ def get_recurso_nombre(i):
    	cursor =conn.cursor()
 	cursor.execute("select nombre,tipo from recursos where ID = "+i)
 	x = cursor.fetchone()
-	return (str(x[0]),str(4.0),str(x[1]))
+	cursor.execute("select sum(puntaje), count(*) from calificaciones where ID_R = "+i)
+	y = cursor.fetchone()
+	return (str(x[0]),str(float(y[0])/float(y[1])),str(x[1]))
 
 @app.route("/material", methods=['GET'])
 def getMaterial():
