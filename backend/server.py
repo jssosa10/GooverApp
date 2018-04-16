@@ -52,9 +52,9 @@ def getCourse():
 	nombrestemas = [get_tema_nombre(i) for i in listaidtemas]
 	idsubtemas = [get_subtemas(i) for i in listaidtemas]
 	nombresubtemas = [[get_subtema_nombre(i) for i in x] for x in idsubtemas]
-	idrestemas = [[get_recursos_tema(i)] for i in listaidtemas]
+	idrestemas = [get_recursos_tema(i) for i in listaidtemas]
 	print idrestemas
-	nombresrestemas = [[[get_recurso_nombre(i) for i in x] for x in y] for y in idrestemas]
+	nombresrestemas = [[get_recurso_nombre(i) for i in x] for x in idrestemas]
 	print nombresrestemas
 	idrecursos = [[get_recursos_subtema(i) for i in x] for x in idsubtemas]
 	#print idrecursos
