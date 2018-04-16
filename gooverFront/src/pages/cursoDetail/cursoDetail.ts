@@ -19,10 +19,10 @@ export class CursoDetailPage {
   curso: any;
   id: any;
   username: string;
-  cargado:boolean;
+  cargado: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public alertCtrl: AlertController, private auth: AuthService, 
+    public alertCtrl: AlertController, private auth: AuthService,
     public modalCtrl: ModalController, private curs: CursoDetailService) {
     if (!this.navParams.get('menu')) {
       console.log('a cambiar');
@@ -39,7 +39,7 @@ export class CursoDetailPage {
     let headers = new Headers(headerOptions);
     this.curs.getCurso(headers, this.id)
       .subscribe(
-        rs => this.curso = rs.curso,
+        rs => this.curso = rs,
         er => console.log(er),
         () => {
           if (this.curso === 'error') {
@@ -60,13 +60,12 @@ export class CursoDetailPage {
           console.log(this.curso);
           console.log(this.curso.titulo);
           console.log(this.curso.temas);
-          this.cargado=true;
+          this.cargado = true;
         }
       )
   }
 
-  estaCargado()
-  {
+  estaCargado() {
     return this.cargado;
   }
 

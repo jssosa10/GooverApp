@@ -7,9 +7,9 @@
       <button ion-button clear (click)="openLogin()">
         Iniciar
       </button>
-<div class="divider">
+      <div class="divider">
 
-</div>
+      </div>
       <button class="register" ion-button round (click)="openRegistro()">
         Registrate
       </button>
@@ -30,9 +30,13 @@
           <ion-list>
 
             <ion-item style="width:100%" no-lines class="center">
-              <ion-label stacked>Usuario o correo</ion-label>
+              <ion-label stacked>Nombre de usuario</ion-label>
               <ion-input type="text" formControlName="userName" style="background-color : #d1d1d1;padding-left: 2px" required></ion-input>
             </ion-item>
+
+            <h3 style="color:red" *ngIf="loginValido()===false">
+              Debe ingresar un nombre de usuario
+            </h3>
 
             <br>
 
@@ -41,19 +45,19 @@
               <ion-input type="password" formControlName="pass" style="background-color : #d1d1d1;padding-left: 2px" required></ion-input>
             </ion-item>
 
+            <h3 style="color:red" *ngIf="passValida()===false">
+              Debe ingresar una contraseña
+            </h3>
+
             <br>
 
             <div padding>
               <button ion-button color="primary" style="padding-top: 25px; padding-bottom: 25px" block (click)="onLogin()">Login</button>
             </div>
 
-
-
             <h2>
               <span>¿Eres nuevo?</span>
             </h2>
-
-
 
             <div padding>
               <button ion-button color="light" style="padding-top: 25px; padding-bottom: 25px" block (click)="onRegistrar()">Registrate</button>

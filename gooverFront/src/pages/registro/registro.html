@@ -1,73 +1,85 @@
 <ion-header>
   <ion-navbar color="toolbar" align-title="center">
-      <button ion-button menuToggle>
+    <button ion-button menuToggle>
+    </button>
+    <ion-buttons right>
+
+      <button ion-button clear (click)="openLogin()">
+        Iniciar
       </button>
-      <ion-buttons right>
+      <div class="divider">
 
-          <button ion-button clear (click)="openLogin()">
-              Iniciar
-          </button>
-          <div class="divider">
-
-          </div>
-          <button class="register" ion-button round register (click)="openRegistro()">
-              Registrate
-          </button>
+      </div>
+      <button class="register" ion-button round register (click)="openRegistro()">
+        Registrate
+      </button>
 
 
-          <!-- left aligned content her style="color:white;background-color:#F9BF3B"e -->
-      </ion-buttons>
+      <!-- left aligned content her style="color:white;background-color:#F9BF3B"e -->
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-grid style="height: 100%;padding:0%">
-    <ion-row justify-content-center align-items-center style="height: 300%" class="fondo1"> 
-        <ion-card col-sm-10 col-md-3 col-lg-3>
+  <ion-row justify-content-center align-items-center style="height: 300%" class="fondo1">
+    <ion-card col-sm-10 col-md-3 col-lg-3>
       <ion-card id="login-card" col-12 style="width:150%" class="center">
-  
+
         <img src="../assets/img/goover1.png" style="max-height: 150px; max-width: 300px" class="center">
         <form [formGroup]="formgroup">
           <ion-list>
-  
+
             <ion-item style="width:100%" no-lines class="center">
-              <ion-label stacked>Usuario o correo</ion-label>
+              <ion-label stacked>Nombre de usuario</ion-label>
               <ion-input type="text" formControlName="userName" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
             </ion-item>
-  
-          <br>
-  
+
+            <h3 style="color:red" *ngIf="loginValido()===false">
+              Debe ingresar un nombre de usuario
+            </h3>
+
+            <br>
+
             <ion-item style="width:100%" class="center">
-              <ion-label stacked >Contraseña</ion-label>                  
-            <ion-input type="password" formControlName="pass" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
-          </ion-item>
-  
-          <br>
+              <ion-label stacked>Contraseña</ion-label>
+              <ion-input type="password" formControlName="pass" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
+            </ion-item>
 
-          <ion-item style="width:100%" class="center">
-            <ion-label stacked >Repite la contraseña</ion-label>                  
-          <ion-input type="password"  formControlName="pass2" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
-        </ion-item>
+            <h3 style="color:red" *ngIf="passValida()===false">
+              Debe ingresar una contraseña
+            </h3>
 
-        <br>
+            <br>
+
+            <ion-item style="width:100%" class="center">
+              <ion-label stacked>Repite la contraseña</ion-label>
+              <ion-input type="password" formControlName="pass2" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
+            </ion-item>
+
+            <h3 style="color:red" *ngIf="pass2Valida()===false">
+              Debe ingresar una contraseña
+            </h3>
+
+            <br>
 
             <div padding>
               <button ion-button color="primary" style="padding-top: 25px; padding-bottom: 25px" block (click)="onRegistro()">Registro</button>
             </div>
 
 
-  
+
             <h2>
               <span>¿Ya tienes cuenta?</span>
             </h2>
 
 
-  
+
             <div padding>
-                <button ion-button color="light" style="padding-top: 25px; padding-bottom: 25px" block (click)="onLogin()">Login</button>
-              </div>
-              <br>
+              <button ion-button color="light" style="padding-top: 25px; padding-bottom: 25px" block (click)="onLogin()">Login</button>
+            </div>
+            <br>
           </ion-list>
         </form>
       </ion-card>
     </ion-card>
-    </ion-row>
-  </ion-grid>
+  </ion-row>
+</ion-grid>

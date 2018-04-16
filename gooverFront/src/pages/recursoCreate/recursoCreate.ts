@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
+import { RecursoService } from '../../services/recurso.service';
 
 @Component({
   templateUrl: 'recursoCreate.html'
@@ -13,14 +14,15 @@ export class RecursoCreatePage {
   nombre: AbstractControl;
   descripcion: AbstractControl;
   isLogged: boolean;
-  imageURI: any;
-  imageFileName: any;
+  resp:any;
+  selectedFile = null;
 
   constructor(
     public viewCtrl: ViewController,
     params: NavParams,
     public formBuilder: FormBuilder,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private recurs: RecursoService
 
   ) {
     console.log(params);
@@ -33,8 +35,8 @@ export class RecursoCreatePage {
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required]
     })
-    this.nombre = this.formgroup.controls['nombre'];
     this.descripcion = this.formgroup.controls['descripcion'];
+    this.nombre = this.formgroup.controls['nombre'];
 
 
 
@@ -53,7 +55,7 @@ export class RecursoCreatePage {
   }
 
   getImage() {
-    
+
   }
 
   presentToast(msg) {
@@ -62,16 +64,41 @@ export class RecursoCreatePage {
       duration: 3000,
       position: 'bottom'
     });
-  
+
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
     });
-  
+
     toast.present();
   }
 
-  uploadFile() {
-    
+  onFileSelected(event) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+    console.log(this.selectedFile.type);
+    console.log(this.selectedFile.name);
+    console.log(this.selectedFile.name.split('.')[1])
+  }
+
+  onUpload() {
+    let namesito= this.selectedFile.name.split('.')[1];
+    if(namesito)
+    {
+      namesito=this.nombre+"."+ namesito;
+    }
+    else{
+      namesito=this.nombre;
+    }
+    this.recurs.agregarRecurso(this.selectedFile, this.formgroup.get('nombre').value)
+    .subscribe(
+      rs => this.resp = rs,
+      er => console.log(er),
+      () => {
+        if (this.resp === 'error') {
+          console.log('upload mal');
+        }
+      }
+    )
   }
 
   dismiss() {

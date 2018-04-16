@@ -21,6 +21,8 @@ import { AutoresizeDirective } from '../services/autoresize';
 import { InstitucionesService } from '../services/instituciones.service';
 import { CursosService } from '../services/cursos.service';
 import { CursoDetailService } from '../services/cursoDetail.service';
+import { TemaService } from '../services/tema.service';
+import { RecursoService } from '../services/recurso.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { CursoDetailService } from '../services/cursoDetail.service';
     InstitucionesService,
     CursosService,
     CursoDetailService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    TemaService,
+    RecursoService,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
