@@ -168,16 +168,12 @@ def do_regiter():
 def upload_recurso():
 	print request.files
 	for file in request.files:
-		try:
-			file = request.files[file]
-			print file
-			base_file_name = "%s-%s" % (str(uuid4()), secure_filename(file.filename))
-			file_name = 'tmp/%s' % base_file_name
-			file.save(file_name)
-			resp = s3.upload(base_file_name, open(file_name),app.config['S3_BUCKET'])
-			print resp
-		except:
-			print 'ERROR'
+		file = request.files[file]
+		base_file_name = "%s-%s" % (str(uuid4()), secure_filename(file.filename))
+		file_name = 'tmp/%s' % base_file_name
+		file.save(file_name)
+		resp = s3.upload(base_file_name, open(file_name),app.config['S3_BUCKET'])
+		print resp
 	return json.dumps('ALGO PASO')
 	
 
