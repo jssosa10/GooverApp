@@ -5,7 +5,9 @@ from flaskext.mysql import MySQL
 import hashlib
 from flask import Flask, render_template, request, redirect
 from flask_cors import CORS, cross_origin
-from helpers import *
+import tinys3
+from werkzeug import secure_filename
+from uuid import uuid4
 
 
 app = Flask(__name__)
@@ -19,6 +21,7 @@ app.config['MYSQL_DATABASE_USER'] = config.get('MySQL', 'user')
 app.config['MYSQL_DATABASE_PASSWORD'] = config.get('MySQL', 'passwd') 
 mysql.init_app(app)
 CORS(app)
+s3 = tinys3.Connection(app.config['AWS_KEY'], app.config['AWS_SECRET'], tls=True)
 
 @app.route("/courses", methods=['GET'])
 def getCourses():
@@ -167,8 +170,13 @@ def upload_recurso():
 	for file in request.files:
 		try:
 			file = request.files[file]
-			output = upload_file_to_s3(file, app.config["S3_BUCKET"])
-			print output
+			print file
+			file = request.files['logo']
+        	base_file_name = "%s-%s" % (str(uuid4()), secure_filename(file.filename))
+        	file_name = 'tmp/%s' % base_file_name
+        	file.save(file_name)
+			resp = s3.upload(base_file_name, open(file_name),app.confi['S3_BUCKET'])
+			print resp
 		except:
 			print 'ERROR'
 	return json.dumps('ALGO PASO')
