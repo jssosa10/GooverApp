@@ -19,7 +19,7 @@ export class RecursoCreatePage {
 
   constructor(
     public viewCtrl: ViewController,
-    params: NavParams,
+    private params: NavParams,
     public formBuilder: FormBuilder,
     public toastCtrl: ToastController,
     private recurs: RecursoService
@@ -89,7 +89,7 @@ export class RecursoCreatePage {
     else{
       namesito=this.nombre;
     }
-    this.recurs.agregarRecurso(this.selectedFile, this.formgroup.get('nombre').value)
+    this.recurs.agregarRecurso(this.selectedFile, this.formgroup.get('nombre').value, this.params.get('tema').id,this.params.get('subtema'))
     .subscribe(
       rs => this.resp = rs,
       er => console.log(er),

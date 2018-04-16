@@ -168,6 +168,7 @@ def do_regiter():
 @app.route ('/recurso',methods=['POST'])
 def upload_recurso():
 	print request.files
+	print request.form
 	for file in request.files:
 		file = request.files[file]
 		base_file_name = "%s-%s" % (str(uuid4()), secure_filename(file.filename))
