@@ -167,7 +167,7 @@ def upload_recurso():
 	print request.files[0]
 	for file in request.files:
 		try:
-			print ffile
+			print file
 			output = upload_file_to_s3(file, app.config["S3_BUCKET"])
 			print output
 		except:
