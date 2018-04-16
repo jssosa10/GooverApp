@@ -101,7 +101,10 @@ def get_recurso_nombre(i):
 	x = cursor.fetchone()
 	cursor.execute("select sum(puntaje), count(*) from calificaciones where ID_R = "+i)
 	y = cursor.fetchone()
-	return (str(x[0]),str(float(y[0])/float(y[1])),str(x[1]))
+	if float(y[1])>0:
+		return (str(x[0]),str(float(y[0])/float(y[1])),str(x[1]))
+	else:
+		return (str(x[0]),str(0.0),str(x[1]))
 
 @app.route("/material", methods=['GET'])
 def getMaterial():
@@ -181,6 +184,12 @@ def upload_recurso():
 		resp = s3.upload(base_file_name, open(file_name),bucket = 'gooverlabfiles')
 		try:
 			cursor.execute('insert into recursos values(null,"'+str(base_file_name)+'","Documento","'+str(resp.url)+'")')
+			cursor.execute('select id from recursos where nombre="'+str(base_file_name)+'"')
+			id = cursor.fetchone()
+			if 'idS' in request.form:
+				cursor.execute('insert into subtemarecurso values('+int(request.form['idS'])+','+int(id)+')') 
+			else:
+				cursor.execute('insert into temarecurso values('+int(request.form['idT'])+','+int(id)+')')
 			conn.commit()
 		except:
 			conn.rollback()
