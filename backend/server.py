@@ -169,14 +169,18 @@ def do_regiter():
 	return json.dumps(user), 200
 @app.route ('/recurso',methods=['POST'])
 def upload_recurso():
+	conn = mysql.connect()
+   	cursor =conn.cursor()
 	print request.files
 	print request.form
 	for file in request.files:
 		file = request.files[file]
+		typ = file.file_type
 		base_file_name = "%s-%s" % (str(uuid4()), secure_filename(file.filename))
 		file_name = 'tmp/%s' % base_file_name
 		file.save(file_name)
 		resp = s3.upload(base_file_name, open(file_name),bucket = 'gooverlabfiles')
+		cursor.execute('insert into recursos values(null,%s,%s,%s)',(base_file_name,str(typ),resp))
 	return json.dumps('ALGO PASO')
 	
 
