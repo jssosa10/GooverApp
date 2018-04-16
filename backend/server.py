@@ -53,6 +53,7 @@ def getCourse():
 	idsubtemas = [get_subtemas(i) for i in listaidtemas]
 	nombresubtemas = [[get_subtema_nombre(i) for i in x] for x in idsubtemas]
 	idrecursos = [[get_recursos_subtema(i) for i in x] for x in idsubtemas]
+	print idrecursos
 	nombrerecursossub = [[[get_recurso_nombre(i) for i in x] for x in y] for y in idrecursos]
 	res = {'titulo': get_nombre_curso(str(id)),'temas':[{'nombre':nombrestemas[i],'id':listaidtemas[i],'subtemas':[{'nombre':nombresubtemas[i][j],'id':idsubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1],'tipo':nombrerecursossub[i][j][k][2]} for k in range(len(idrecursos)) ]} for j in range(len(idsubtemas))]} for i in range(len(listaidtemas))]}
 	return json.dumps(res)
