@@ -161,7 +161,7 @@ def do_regiter():
 	return json.dumps(user), 200
 @app.route ('/recurso',methods=['POST'])
 def upload_recurso():
-	print request.__dict__
+	print request.files
 	return json.dumps('holis carlos')
 
 if __name__ == "__main__":
