@@ -164,7 +164,6 @@ def do_regiter():
 @app.route ('/recurso',methods=['POST'])
 def upload_recurso():
 	print request.files
-	print request.files[0]
 	for file in request.files:
 		try:
 			print file
