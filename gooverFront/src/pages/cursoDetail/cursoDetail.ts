@@ -96,7 +96,13 @@ export class CursoDetailPage {
       let myModal = this.modalCtrl.create(RecursoCreatePage, { 'tema': this.curso.temas[i] });
       myModal.present();
     }
+  }
 
+  abrirRecurso(i,j,k)
+  {
+    console.log('i ' + i);
+    console.log('j ' + j);
+    console.log('k ' + k);
   }
 
   showPromptTema() {
