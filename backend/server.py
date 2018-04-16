@@ -179,7 +179,7 @@ def upload_recurso():
 		file_name = 'tmp/%s' % base_file_name
 		file.save(file_name)
 		resp = s3.upload(base_file_name, open(file_name),bucket = 'gooverlabfiles')
-		cursor.execute('insert into recursos values(null,%s,"Documento",%s)',(base_file_name,resp))
+		cursor.execute('insert into recursos values(null,%s,"Documento",%s)' % (base_file_name,resp))
 	return json.dumps('ALGO PASO')
 	
 
