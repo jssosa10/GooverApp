@@ -8,9 +8,9 @@
     </ion-navbar>
 
 </ion-header>
-<ion-content padding text-center>
-    <ion-card>
 
+<ion-content padding text-center style="margin-top: 44px" *ngIf="estaCargado()">
+    <ion-card>
         <ion-card-header>
             <h1>{{curso.titulo}}</h1>
         </ion-card-header>
@@ -20,7 +20,7 @@
                     <button ion-button (click)="showPromptTema()">Agregar tema</button>
                     <ion-list-header *ngFor="let tema of curso.temas; let i = index" no-lines no-padding>
 
-                        <!-- Toggle Button -->
+
                         <ion-card class="tema">
                             <button class="tema" ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': tema.open, 'section': !tema.open}">
                                 <ion-icon item-left name="arrow-forward" *ngIf="!tema.open"></ion-icon>
@@ -33,10 +33,10 @@
                             </div>
                             <ion-list *ngIf="tema.subtemas && tema.open" no-lines>
 
-                                <!-- Second Level -->
+
                                 <ion-card class="subtema">
                                     <ion-list-header class="subtema" *ngFor="let subtema of tema.subtemas; let j = index" no-padding>
-                                        <!-- Toggle Button -->
+
                                         <button ion-item (click)="toggleSubtema(i, j)" *ngIf="subtema.recursos" class="child" detail-none>
                                             <ion-icon item-left name="add" *ngIf="!subtema.open"></ion-icon>
                                             <ion-icon item-left name="close" *ngIf="subtema.open"></ion-icon>
@@ -44,9 +44,9 @@
                                         </button>
 
                                         <ion-list *ngIf="subtema.recursos && subtema.open">
-                                            <!-- Third Level -->
+
                                             <ion-list-header class="subtema" *ngFor="let recurso of subtema.recursos; let k = index" style="padding-top:10px">
-                                                <!-- Toggle Button -->
+
                                                 <img src="../assets/img/{{recurso.tipo}}.png" style="float:left;vertical-align:middle;max-height: 30px; max-width: 30px;padding-right:5px">
                                                 <h3 style="float:left;text-align: left;">{{ recurso.nombre }}</h3>
                                                 <img src="../assets/img/star.png" style="text-align: right;float:right;vertical-align:middle;max-height: 25px; max-width: 25px">
@@ -60,9 +60,9 @@
                             </ion-list>
 
                             <ion-list *ngIf="tema.recursos && tema.open" no-lines>
-                                <!-- Second Level -->
+
                                 <ion-list-header class="tema" *ngFor="let recurso of tema.recursos; let j = index" style="padding-top:10px;margin-top:0px">
-                                    <!-- Toggle Button -->
+
                                     <img src="../assets/img/{{recurso.tipo}}.png" style="float:left;vertical-align:middle;max-height: 30px; max-width: 30px;padding-right:5px">
                                     <h3 style="float:left;text-align: left;">{{ recurso.nombre }}</h3>
                                     <img src="../assets/img/star.png" style="text-align: right;float:right;vertical-align:middle;max-height: 25px; max-width: 25px">
@@ -73,10 +73,18 @@
                                     <button ion-button color="secondary" (click)="onRecurso(i)">Agregar recurso a tema</button>
                                 </ion-list-header>
                             </ion-list>
+
+                            <div *ngIf="tema.open">
+                                <ion-list-header class="tema" style="padding-top:10px">
+                                    <button ion-button color="secondary" (click)="onRecurso(i)">Agregar recurso a tema</button>
+                                </ion-list-header>
+                            </div>
+
                         </ion-card>
                     </ion-list-header>
-                    </ion-card>
+                </ion-card>
             </ion-list>
+
         </ion-scroll>
-        </ion-card>
+    </ion-card>
 </ion-content>
