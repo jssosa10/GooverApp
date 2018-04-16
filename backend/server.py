@@ -59,7 +59,7 @@ def getCourse():
 	idrecursos = [[get_recursos_subtema(i) for i in x] for x in idsubtemas]
 	#print idrecursos
 	nombrerecursossub = [[[get_recurso_nombre(i) for i in x] for x in y] for y in idrecursos]
-	res = {'titulo': get_nombre_curso(str(id)),'temas':[{'nombre':nombrestemas[i],'id':listaidtemas[i],'recursos':[{'nombre':nombresrestemas[i][j][0],'calificacion':nombresrestemas[i][j][1],'tipo':nombresrestemas[i][j][2]} for j in range(len(nombresrestemas[i]))],'subtemas':[{'nombre':nombresubtemas[i][j],'id':idsubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1],'tipo':nombrerecursossub[i][j][k][2]} for k in range(len(idrecursos[i][j])) ]} for j in range(len(idsubtemas[i]))]} for i in range(len(listaidtemas))]}
+	res = {'titulo': get_nombre_curso(str(id)),'temas':[{'nombre':nombrestemas[i],'id':listaidtemas[i],'recursos':[{'nombre':nombresrestemas[i][j][0],'calificacion':nombresrestemas[i][j][1],'tipo':nombresrestemas[i][j][2],'id':nombresrestemas[i][j][3]} for j in range(len(nombresrestemas[i]))],'subtemas':[{'nombre':nombresubtemas[i][j],'id':idsubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1],'tipo':nombrerecursossub[i][j][k][2],'id':nombrerecursossub[i][j][k][3]} for k in range(len(idrecursos[i][j])) ]} for j in range(len(idsubtemas[i]))]} for i in range(len(listaidtemas))]}
 	return json.dumps(res)
 def get_nombre_curso(i):
 	conn = mysql.connect()
@@ -103,14 +103,14 @@ def get_recursos_tema(i):
 def get_recurso_nombre(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select nombre,tipo from recursos where ID = "+i)
+	cursor.execute("select nombre,tipo,id from recursos where ID = "+i)
 	x = cursor.fetchone()
 	cursor.execute("select sum(puntaje), count(*) from calificaciones where ID_R = "+i)
 	y = cursor.fetchone()
 	if float(y[1])>0:
-		return (str(x[0]),str(float(y[0])/float(y[1])),str(x[1]))
+		return (str(x[0]),str(float(y[0])/float(y[1])),str(x[1]),str(x[2]))
 	else:
-		return (str(x[0]),str(0.0),str(x[1]))
+		return (str(x[0]),str(0.0),str(x[1]),str(x[2]))
 
 @app.route("/material", methods=['GET'])
 def getMaterial():
