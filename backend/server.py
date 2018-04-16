@@ -87,8 +87,9 @@ def get_recursos_subtema(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
 	cursor.execute("select ID_R from subtemarecurso where ID_S = "+i)
-	print cursor.fetchall()
-	return [str(x[0]) for x in list(cursor.fetchall())]
+	k = cursor.fetchall()
+	print k
+	return [str(x[0]) for x in k]
 
 def get_recursos_tema(i):
 	conn = mysql.connect()
