@@ -91,9 +91,9 @@ def get_recursos_tema(i):
 def get_recurso_nombre(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select nombre,calificacion from recursos where ID = "+i)
+	cursor.execute("select nombre,calificacion,tipo from recursos where ID = "+i)
 	x = cursor.fetchone()
-	return (str(x[0]),str(float(x[1])))
+	return (str(x[0]),str(float(x[1])),str(x[2]))
 
 @app.route("/material", methods=['GET'])
 def getMaterial():
