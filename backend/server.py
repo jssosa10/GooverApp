@@ -168,7 +168,7 @@ def upload_recurso():
 		file = request.file['myfile'] 
 		print file
 		output = upload_file_to_s3(file, app.config["S3_BUCKET"])
-    	return json.dumps(output)
+		return json.dumps(output)
 	except:
 		return json.dumps('ERROR')
 	
