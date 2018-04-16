@@ -13,10 +13,11 @@ export class RecursoService {
         this.exito = false;
     }
 
-    agregarRecurso(selectedFile, name) {
+    agregarRecurso(selectedFile, name, id) {
         let url = `${this.url}/recurso`;
         const uploadData=new FormData();
-        uploadData.append('myFile', selectedFile);        
+        uploadData.append('myFile', selectedFile);       
+        uploadData.append('idT', id);  
         //console.log("nom "+ name);
         return this.http.post(url, uploadData)
             .map(res => res.text())

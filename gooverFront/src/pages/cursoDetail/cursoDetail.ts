@@ -89,7 +89,7 @@ export class CursoDetailPage {
   onRecurso(i, j) {
     //this.navCtrl.setRoot(RegistroPage);
     if (j !== undefined) {
-      let myModal = this.modalCtrl.create(RecursoCreatePage, { 'subtema': this.curso.temas[i].subtemas[j] });
+      let myModal = this.modalCtrl.create(RecursoCreatePage, { 'tema': this.curso.temas[i], 'subtema': this.curso.temas[i].subtemas[j] });
       myModal.present();
     }
     else {
