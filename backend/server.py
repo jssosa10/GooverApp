@@ -9,6 +9,7 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 mysql = MySQL()
 config = ConfigParser.ConfigParser()
+app.config.from_object("config")
 config.read('config.cfg')
 app.config['MYSQL_DATABASE_HOST'] = config.get('MySQL', 'host') 
 app.config['MYSQL_DATABASE_DB'] = config.get('MySQL', 'db')
@@ -42,7 +43,6 @@ def getCourse():
    	cursor =conn.cursor()
 	cursor.execute("select ID_T from cursotema where ID_C = "+str(id))
 	listaidtemas = [str(x[0]) for x in  list(cursor.fetchall())]
-	#idrecursostemas = [[get_recursos_tema(i) for i in x] for x in listaidtemas]
 	nombrestemas = [get_tema_nombre(i) for i in listaidtemas]
 	idsubtemas = [get_subtemas(i) for i in listaidtemas]
 	nombresubtemas = [[get_subtema_nombre(i) for i in x] for x in idsubtemas]
