@@ -159,7 +159,11 @@ def do_regiter():
 		m = hashlib.md5()
 	conn.close()
 	return json.dumps(user), 200
-
+@app.route ('/recurso',methods=['POST'])
+def upload_recurso():
+	print request
+	return json.dumps('holis carlos')
+	
 if __name__ == "__main__":
 
     app.run(host='', port=9000)
