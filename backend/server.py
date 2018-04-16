@@ -86,12 +86,13 @@ def get_recursos_subtema(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
 	cursor.execute("select ID_R from subtemarecurso where ID_S = "+i)
+	print cursor.fetchall()
 	return [str(x[0]) for x in list(cursor.fetchall())]
 
 def get_recursos_tema(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	cursor.execute("select ID_R from temarecurso where ID_S = "+i)
+	cursor.execute("select ID_R from temarecurso where ID_T = "+i)
 	return [str(x[0]) for x in list(cursor.fetchall())]
 	
 def get_recurso_nombre(i):
@@ -99,6 +100,7 @@ def get_recurso_nombre(i):
    	cursor =conn.cursor()
 	cursor.execute("select nombre,tipo from recursos where ID = "+i)
 	x = cursor.fetchone()
+	print str(x[0])
 	cursor.execute("select sum(puntaje), count(*) from calificaciones where ID_R = "+i)
 	y = cursor.fetchone()
 	if float(y[1])>0:
@@ -185,11 +187,11 @@ def upload_recurso():
 		try:
 			cursor.execute('insert into recursos values(null,"'+str(base_file_name)+'","Documento","'+str(resp.url)+'")')
 			cursor.execute('select id from recursos where nombre="'+str(base_file_name)+'"')
-			id = cursor.fetchone()
+			idd = cursor.fetchone()[0]
 			if 'idS' in request.form:
-				cursor.execute('insert into subtemarecurso values('+int(request.form['idS'])+','+int(id)+')') 
+				cursor.execute('insert into subtemarecurso values('+str(request.form['idS'])+','+str(idd)+')') 
 			else:
-				cursor.execute('insert into temarecurso values('+int(request.form['idT'])+','+int(id)+')')
+				cursor.execute('insert into temarecurso values('+str(request.form['idT'])+','+str(idd)+')')
 			conn.commit()
 		except:
 			print 'roll'
