@@ -192,6 +192,7 @@ def upload_recurso():
 				cursor.execute('insert into temarecurso values('+int(request.form['idT'])+','+int(id)+')')
 			conn.commit()
 		except:
+			print 'roll'
 			conn.rollback()
 			return json.dumps('Error')
 	return json.dumps('Subio')
