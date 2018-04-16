@@ -164,14 +164,14 @@ def do_regiter():
 @app.route ('/recurso',methods=['POST'])
 def upload_recurso():
 	print request.files
-	print request.files[1]
-	try:
-		file = request.files[1] 
-		print file
-		output = upload_file_to_s3(file, app.config["S3_BUCKET"])
-		return json.dumps(output)
-	except:
-		return json.dumps('ERROR')
+	for file in files:
+		try:
+			print file
+			output = upload_file_to_s3(file, app.config["S3_BUCKET"])
+			print output
+		except:
+			print 'ERROR')
+	return json.dumps('ALGO PASO')
 	
 
 
