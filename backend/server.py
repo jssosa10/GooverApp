@@ -171,10 +171,9 @@ def upload_recurso():
 		try:
 			file = request.files[file]
 			print file
-			file = request.files['logo']
-        	base_file_name = "%s-%s" % (str(uuid4()), secure_filename(file.filename))
-        	file_name = 'tmp/%s' % base_file_name
-        	file.save(file_name)
+			base_file_name = "%s-%s" % (str(uuid4()), secure_filename(file.filename))
+			file_name = 'tmp/%s' % base_file_name
+			file.save(file_name)
 			resp = s3.upload(base_file_name, open(file_name),app.confi['S3_BUCKET'])
 			print resp
 		except:
