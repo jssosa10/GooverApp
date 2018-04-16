@@ -164,8 +164,9 @@ def do_regiter():
 @app.route ('/recurso',methods=['POST'])
 def upload_recurso():
 	print request.files
+	print request.files['myfile']
 	try:
-		file = request.file['myfile'] 
+		file = request.files['myfile'] 
 		print file
 		output = upload_file_to_s3(file, app.config["S3_BUCKET"])
 		return json.dumps(output)
