@@ -253,7 +253,7 @@ def post_cal():
 	punta = float(punta)
 	try:
 		print 'llego'
-		cursor.execute('insert into subtemas values(null,%s,%s)',(idr,punt))
+		cursor.execute('insert into calificaciones values(null,%s,%s)',(idr,punta))
 		conn.commit()
 		return json.dumps('ok'),200
 	except:
