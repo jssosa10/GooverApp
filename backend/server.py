@@ -232,6 +232,19 @@ def upload_recurso():
 			conn.rollback()
 			return json.dumps('Error'),404
 	return json.dumps('Subio'),200
+@app.route ('/calificacion',methods=['POST')
+def post_cal():
+	content = request.get_json(silent=True)
+	print content
+	idr = content['idRecurso']
+	punta = content['puntaje']
+	try:
+		cursor.execute('insert into subtemas values(null,'+str(idr)+','+str(punta)+')')
+		conn.commit()
+		return json.dumps('ok'),200
+	except:
+		conn.rollback()
+		return json.dumps('Error'),400
 
 @app.route ('/recurso',methods=['GET'])
 def get_recurso():
