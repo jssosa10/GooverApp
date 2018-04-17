@@ -6,14 +6,16 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CalificacionService {
     exito: boolean;
-    url = 'http://54.197.214.217:9000';
+   // url = 'http://54.197.214.217:9000';
+    url = 'https://httpbin.org';
 
     constructor(private http: Http) {
         this.exito = false;
     }
 
     votacion(userInfo) {
-        let url = `${this.url}/voto`;
+        //let url = `${this.url}/calificacion`;
+        let url = `${this.url}/post`;
         let headerOptions: any = { 'Content-Type': 'application/json' };
         let headers = new Headers(headerOptions);
         console.log(userInfo)

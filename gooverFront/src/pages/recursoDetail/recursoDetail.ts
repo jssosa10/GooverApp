@@ -31,7 +31,7 @@ export class RecursoDetailPage {
     let headerOptions: any = { 'Content-Type': 'application/json' };
     let myParams = new URLSearchParams();
     let headers = new Headers(headerOptions);
-    this.recurs.getRecurso(headers, this.id)
+    /**this.recurs.getRecurso(headers, this.id)
       .subscribe(
         rs => this.recurso = rs,
         er => console.log(er),
@@ -48,7 +48,7 @@ export class RecursoDetailPage {
         }
 
       )
-
+*/
   }
 
   showPromptVoto() {
@@ -72,12 +72,12 @@ export class RecursoDetailPage {
           text: 'Calificar',
           handler: data => {
             console.log('data ' + data.title);
-            let f = { calificacion: data.title };
-            //this.calif.votacion(f).subscribe(
-             // er => console.log(er),
-              //() => {
-              //}
-            //)
+            let f = { idRecurso: this.id, puntaje: data.title };
+            this.calif.votacion(f).subscribe(
+             er => console.log(er),
+              () => {
+              }
+            )
           }
         }
       ]

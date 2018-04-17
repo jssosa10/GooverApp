@@ -232,7 +232,17 @@ def upload_recurso():
 			conn.rollback()
 			return json.dumps('Error'),404
 	return json.dumps('Subio'),200
-@app.route ('/calificacion',methods=['POST')
+
+@app.route ('/recurso',methods=['GET'])
+def get_recurso():
+	i = request.args.get('id')
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute('select URL from recursos where id = '+i)
+	x = cursor.fetchone()[0]
+	return json.dumps(x),200
+	
+@app.route ('/calificacion',methods=['POST'])
 def post_cal():
 	content = request.get_json(silent=True)
 	print content
@@ -245,15 +255,6 @@ def post_cal():
 	except:
 		conn.rollback()
 		return json.dumps('Error'),400
-
-@app.route ('/recurso',methods=['GET'])
-def get_recurso():
-	i = request.args.get('id')
-	conn = mysql.connect()
-   	cursor =conn.cursor()
-	cursor.execute('select URL from recursos where id = '+i)
-	x = cursor.fetchone()[0]
-	return json.dumps(x),200
 
 
 if __name__ == "__main__":
