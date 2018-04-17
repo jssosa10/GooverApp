@@ -170,6 +170,7 @@ def do_regiter():
 def create_tema():
 	conn = mysql.connect()
    	cursor =conn.cursor()
+	print request.
 	content = request.get_json(silent=True)
 	print content
 	idc = content['idCurso']
@@ -181,6 +182,28 @@ def create_tema():
 		idd = cursor.fetchone()[0]
 		print idd
 		cursor.execute('insert into cursotema values(%s,%s)',(str(idc),str(idd)))
+		conn.commit()
+		return json.dumps('ok'),200
+	except:
+		conn.rollback()
+		return json.dumps('Error'),400
+
+@app.route ('/subtema',methods=['POST'])
+def create_subtema():
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	print request.
+	content = request.get_json(silent=True)
+	print content
+	idt = content['idTema']
+	tit = content['titulo']
+	print tit
+	try:
+		cursor.execute('insert into subtemas values(null,"'+str(tit)+'")')
+		cursor.execute('select id from subtemas where nombre="'+str(tit)+'"')
+		idd = cursor.fetchone()[0]
+		print idd
+		cursor.execute('insert into temasubtema values(%s,%s)',(str(idt),str(idd)))
 		conn.commit()
 		return json.dumps('ok'),200
 	except:
