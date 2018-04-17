@@ -165,6 +165,24 @@ def do_regiter():
 		m = hashlib.md5()
 	conn.close()
 	return json.dumps(user), 200
+
+@app.route ('/tema',methods=['POST'])
+def create_tema():
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	idc  = request.form['idCurso']
+	tit = request.form['titulo']
+	try:
+		cursor.execute('insert into temas values(null,%s)',str(tit))
+		cursor.execute('select id from recursos where nombre="'+str(tit)+'"')
+		idd = cursor.fetchone()[0]
+		cursor.execute('insert into cursotema values(%s,%s)',(str(idc),str(idd)))
+		conn.commit()
+		return json.dumps('ok'),200
+	except:
+		conn.rollback()
+		return json.dumps('Error'),400
+	
 @app.route ('/recurso',methods=['POST'])
 def upload_recurso():
 	conn = mysql.connect()
