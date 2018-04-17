@@ -23,6 +23,8 @@ import { CursosService } from '../services/cursos.service';
 import { CursoDetailService } from '../services/cursoDetail.service';
 import { TemaService } from '../services/tema.service';
 import { RecursoService } from '../services/recurso.service';
+import { RecursoDetailPageModule } from '../pages/recursoDetail/recursoDetail.module';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { RecursoService } from '../services/recurso.service';
     CursosPageModule,
     InstitucionesPageModule,
     RecursoCreatePageModule,
+    RecursoDetailPageModule,
     HttpModule,
+    PdfViewerModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

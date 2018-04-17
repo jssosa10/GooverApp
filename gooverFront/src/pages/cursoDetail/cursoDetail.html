@@ -46,7 +46,7 @@
                                         <ion-list *ngIf="subtema.recursos && subtema.open">
 
                                             <ion-list-header class="subtema" *ngFor="let recurso of subtema.recursos; let k = index" style="padding-top:10px">
-                                                <a (click)="abrirRecurso(i,j,k)">
+                                                <a (click)="abrirRecurso(i,j,k)" style="cursor: pointer">
                                                 <img src="../assets/img/{{recurso.tipo}}.png" style="float:left;vertical-align:middle;max-height: 30px; max-width: 30px;padding-right:5px">
                                                 <h3 style="float:left;text-align: left;">{{ recurso.nombre }}</h3>
                                                 <img src="../assets/img/star.png" style="text-align: right;float:right;vertical-align:middle;max-height: 25px; max-width: 25px">
@@ -63,7 +63,7 @@
                             <ion-list *ngIf="tema.recursos && tema.open" no-lines>
 
                                 <ion-list-header class="tema" *ngFor="let recurso of tema.recursos; let j = index" style="padding-top:10px;margin-top:0px">
-                                    <a (click)="abrirRecurso(i,j)">
+                                    <a (click)="abrirRecurso(i,j)" style="cursor: pointer">
                                     <img src="../assets/img/{{recurso.tipo}}.png" style="float:left;vertical-align:middle;max-height: 30px; max-width: 30px;padding-right:5px">
                                     <h3 style="float:left;text-align: left;">{{ recurso.nombre }}</h3>
                                     <img src="../assets/img/star.png" style="text-align: right;float:right;vertical-align:middle;max-height: 25px; max-width: 25px">

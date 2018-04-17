@@ -1,26 +1,68 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
+import { RecursoService } from '../../services/recurso.service';
 
 @IonicPage
-({
-  name: 'Recurso',
-  segment: 'recurso/:id'
-})
+  ({
+    name: 'RecursoDetail',
+    segment: 'recurso/:id'
+  })
 @Component({
   selector: 'page-recursoDetail',
   templateUrl: 'recursoDetail.html'
 })
 export class RecursoDetailPage {
 
-    recurso:any;
-    id:any;
-    
-  constructor(public navCtrl: NavController,public navParams: NavParams) {
-    this.id=this.navParams.get('id');
-    console.log(this.id);
-    this.recurso={titulo:'Parciales sistrans',
-    contenido:{imagenes:['Parcial1_1.jpg','Parcial1_2.jpg','Parcial1_3.jpg','Parcial1_4.jpg',
-    'Parcial2_1.jpg','Parcial2_2.jpg','Parcial2_3.jpg','Parcial2_4.jpg']}};
-  console.log(this.recurso);
+  recurso: any;
+  id: any;
+  cargado: boolean=false;
+  pdfSrc:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private recurs: RecursoService) {
+    this.id = this.navParams.get('id');
+  }
+  setItems() {
+    let headerOptions: any = { 'Content-Type': 'application/json' };
+    let myParams = new URLSearchParams();
+    let headers = new Headers(headerOptions);
+    this.recurs.getRecurso(headers, this.id)
+      .subscribe(
+        rs => this.recurso = rs,
+        er => console.log(er),
+        () => {
+          if (this.recurso === 'error') {
+            console.log('Recursos mal');
+          }
+          console.log('antes')
+          console.log(this.recurso);
+          console.log(this.extractText(this.recurso));
+          this.pdfSrc=this.extractText(this.recurso);
+          console.log('despues')
+          this.cargado=true;
+        }
+        
+      )
+     
+  }
+
+ extractText( str ){
+    var ret = "";
+  
+    if ( /"/.test( str ) ){
+      ret = str.match( /"(.*?)"/ )[1];
+    } else {
+      ret = str;
+    }
+  
+    return ret;
+  }
+
+  ngOnInit() {
+    this.setItems();
+  }
+
+  estaCargado()
+  {
+    return this.cargado;
   }
 }

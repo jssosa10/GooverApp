@@ -6,9 +6,9 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RecursoService {
-    exito: boolean;
+    exito: any;
+    recurso: any;
     url = 'http://54.197.214.217:9000';
-    //url = 'https://httpbin.org/post';
 
     constructor(private http: Http) {
         this.exito = false;
@@ -16,7 +16,6 @@ export class RecursoService {
 
     agregarRecurso(selectedFile, name, idTema, subtema) {
         let url = `${this.url}/recurso`;
-        //let url = `${this.url}`;
         const uploadData=new FormData();
         uploadData.append('myFile', selectedFile);       
         uploadData.append('idT', idTema); 
@@ -35,6 +34,24 @@ export class RecursoService {
                     this.exito = true;
                 }
                 return this.exito;
+            });
+    }
+
+    getRecurso(headers,id) {
+        console.log('idR '+ id);
+        let url = `${this.url}/recurso?id=`+id;
+        //console.log("nom "+ name);
+        return this.http.get(url,{ headers: headers })
+            .map(res => res.text())
+            .map(res => {
+                console.log(res);
+                if (res == "error" || res == "nofound") {
+                    this.recurso="error";
+                } else {
+                    this.recurso = res;
+                }
+                console.log(this.recurso);
+                return this.recurso;
             });
     }
 }

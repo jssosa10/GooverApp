@@ -103,6 +103,16 @@ export class CursoDetailPage {
     console.log('i ' + i);
     console.log('j ' + j);
     console.log('k ' + k);
+    let recurso;
+    if(k!==undefined)
+    {
+      recurso=this.curso.temas[i].subtemas[j].recursos[k];
+    }
+    else
+    {
+      recurso=this.curso.temas[i].recursos[j];
+    }
+    this.navCtrl.push('RecursoDetail', { id: recurso.id});
   }
 
   showPromptTema() {

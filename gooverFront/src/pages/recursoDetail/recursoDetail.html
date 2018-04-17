@@ -1,16 +1,12 @@
-<ion-content style="top:44px" padding text-center>
+<ion-content style="top:44px" padding text-center *ngIf="estaCargado()">
     <ion-card>
-
         <ion-card-header>
-            <h1>{{recurso.titulo}}</h1>
+            <h1>{{recurso.url}}</h1>
         </ion-card-header>
         <ion-scroll style="height:80vh;" scrollY="true">
             <ion-list scroll="true">
                 <ion-card>
-                    <ion-list-header *ngFor="let img of recurso.contenido.imagenes; let i = index" no-lines no-padding>
-                        <!-- Toggle Button -->
-                                <img src="../assets/cursos/sistrans/{{img}}" style="float:left;vertical-align:middle;padding-right:5px">
-                    </ion-list-header>
+                    <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
                 </ion-card>
             </ion-list>
         </ion-scroll>
