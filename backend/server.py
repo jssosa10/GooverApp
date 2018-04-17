@@ -32,7 +32,7 @@ def getCourses():
 	cursor.execute("select id,titulo from cursos where U_ID = "+str(id))
 	lista = list(cursor.fetchall())
 	lista = [{'id':str(x[0]),'titulo':str(x[1])} for x in lista]
-	return json.dumps(lista)
+	return json.dumps(lista),200
 
 @app.route("/AllCourses", methods=['GET'])
 def getAllC():
@@ -41,7 +41,7 @@ def getAllC():
 	cursor.execute("select id,titulo from cursos")
 	lista = list(cursor.fetchall())
 	lista = [{'id':str(x[0]),'titulo':str(x[1])} for x in lista]
-	return json.dumps(lista)
+	return json.dumps(lista),200
 @app.route("/course",methods=['GET'])
 def getCourse():
 	id = request.args.get('id')
@@ -60,7 +60,7 @@ def getCourse():
 	#print idrecursos
 	nombrerecursossub = [[[get_recurso_nombre(i) for i in x] for x in y] for y in idrecursos]
 	res = {'titulo': get_nombre_curso(str(id)),'temas':[{'nombre':nombrestemas[i],'id':listaidtemas[i],'recursos':[{'nombre':nombresrestemas[i][j][0],'calificacion':nombresrestemas[i][j][1],'tipo':nombresrestemas[i][j][2],'id':nombresrestemas[i][j][3]} for j in range(len(nombresrestemas[i]))],'subtemas':[{'nombre':nombresubtemas[i][j],'id':idsubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1],'tipo':nombrerecursossub[i][j][k][2],'id':nombrerecursossub[i][j][k][3]} for k in range(len(idrecursos[i][j])) ]} for j in range(len(idsubtemas[i]))]} for i in range(len(listaidtemas))]}
-	return json.dumps(res)
+	return json.dumps(res),200
 def get_nombre_curso(i):
 	conn = mysql.connect()
    	cursor =conn.cursor()
@@ -119,7 +119,7 @@ def get_unis():
 	cursor.execute("select * from instituciones")
 	lista = list(cursor.fetchall())
 	lista = [{'id':str(x[0]),'titulo':str(x[1]),'img':str(x[2])} for x in lista]
-	return json.dumps(lista)
+	return json.dumps(lista),200
 @app.route('/login', methods=['POST'])
 def do_login():
 	m = hashlib.md5()
@@ -199,9 +199,6 @@ def get_recurso():
 	x = str(cursor.fetchone()[0])
 	res = {'recurso':{'id':i,'url':x}}
 	return json.dumps(res),200
-
-	
-
 
 
 if __name__ == "__main__":
