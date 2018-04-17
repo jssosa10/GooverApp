@@ -173,7 +173,7 @@ def create_tema():
 	idc  = request.form['idCurso']
 	tit = request.form['titulo']
 	try:
-		cursor.execute('insert into temas values(null,"'+,str(tit)+'")')
+		cursor.execute('insert into temas values(null,"'+str(tit)+'")')
 		cursor.execute('select id from temas where nombre="'+str(tit)+'"')
 		idd = cursor.fetchone()[0]
 		print idd
