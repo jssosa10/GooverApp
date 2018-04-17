@@ -112,17 +112,6 @@ def get_recurso_nombre(i):
 	else:
 		return (str(x[0]),str(0.0),str(x[1]),str(x[2]))
 
-@app.route("/material", methods=['GET'])
-def getMaterial():
-	where = request.args.get('where')
-	where = '/home/ubuntu/courses/'+where
-	if os.path.isdir(where):
-		return json.dumps(os.listdir(where))
-	elif os.path.isfile(where): 
-		return json.dumps('ok')
-	else:
-		return json.dumps('not ok')
-
 @app.route('/instituciones', methods=['GET'])
 def get_unis():
 	conn = mysql.connect()
@@ -180,8 +169,6 @@ def do_regiter():
 def upload_recurso():
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	print request.files
-	print request.form
 	for file in request.files:
 		file = request.files[file]
 		base_file_name = "%s-%s" % (str(uuid4()), secure_filename(file.filename))
@@ -200,8 +187,19 @@ def upload_recurso():
 		except:
 			print 'roll'
 			conn.rollback()
-			return json.dumps('Error')
-	return json.dumps('Subio')
+			return json.dumps('Error'),404
+	return json.dumps('Subio'),200
+
+@app.route ('/recurso',methods=['GET'])
+def get_recurso():
+	i = request.args.get('id')
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	cursor.execute('select URL from recursos where id = '+i)
+	x = str(cursor.fetchone()[0])
+	res = {'recurso':{'id':i,'url':x}}
+	return json.dumps(res),200
+
 	
 
 
