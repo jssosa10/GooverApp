@@ -59,7 +59,7 @@ def getCourse():
 	idrecursos = [[get_recursos_subtema(i) for i in x] for x in idsubtemas]
 	#print idrecursos
 	nombrerecursossub = [[[get_recurso_nombre(i) for i in x] for x in y] for y in idrecursos]
-	res = {'titulo': get_nombre_curso(str(id)),'temas':[{'nombre':nombrestemas[i],'id':listaidtemas[i],'recursos':[{'nombre':nombresrestemas[i][j][0],'calificacion':nombresrestemas[i][j][1],'tipo':nombresrestemas[i][j][2],'id':nombresrestemas[i][j][3]} for j in range(len(nombresrestemas[i]))],'subtemas':[{'nombre':nombresubtemas[i][j],'id':idsubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1],'tipo':nombrerecursossub[i][j][k][2],'id':nombrerecursossub[i][j][k][3]} for k in range(len(idrecursos[i][j])) ]} for j in range(len(idsubtemas[i]))]} for i in range(len(listaidtemas))]}
+	res = {'id':id,'titulo': get_nombre_curso(str(id)),'temas':[{'nombre':nombrestemas[i],'id':listaidtemas[i],'recursos':[{'nombre':nombresrestemas[i][j][0],'calificacion':nombresrestemas[i][j][1],'tipo':nombresrestemas[i][j][2],'id':nombresrestemas[i][j][3]} for j in range(len(nombresrestemas[i]))],'subtemas':[{'nombre':nombresubtemas[i][j],'id':idsubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1],'tipo':nombrerecursossub[i][j][k][2],'id':nombrerecursossub[i][j][k][3]} for k in range(len(idrecursos[i][j])) ]} for j in range(len(idsubtemas[i]))]} for i in range(len(listaidtemas))]}
 	return json.dumps(res),200
 def get_nombre_curso(i):
 	conn = mysql.connect()
@@ -125,7 +125,7 @@ def do_login():
 	m = hashlib.md5()
 	content = request.get_json(silent=True)
 	passw = content['password']
-        user = content['username']
+	user = content['username']
 	m.update(passw)
 	prs =  m.hexdigest()
 	conn = mysql.connect()
@@ -165,6 +165,49 @@ def do_regiter():
 		m = hashlib.md5()
 	conn.close()
 	return json.dumps(user), 200
+
+@app.route ('/tema',methods=['POST'])
+def create_tema():
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	content = request.get_json(silent=True)
+	print content
+	idc = content['idCurso']
+	tit = content['titulo']
+	print tit
+	try:
+		cursor.execute('insert into temas values(null,"'+str(tit)+'")')
+		cursor.execute('select id from temas where nombre="'+str(tit)+'"')
+		idd = cursor.fetchone()[0]
+		print idd
+		cursor.execute('insert into cursotema values(%s,%s)',(str(idc),str(idd)))
+		conn.commit()
+		return json.dumps('ok'),200
+	except:
+		conn.rollback()
+		return json.dumps('Error'),400
+
+@app.route ('/subtema',methods=['POST'])
+def create_subtema():
+	conn = mysql.connect()
+   	cursor =conn.cursor()
+	content = request.get_json(silent=True)
+	print content
+	idt = content['idTema']
+	tit = content['titulo']
+	print tit
+	try:
+		cursor.execute('insert into subtemas values(null,"'+str(tit)+'")')
+		cursor.execute('select id from subtemas where nombre="'+str(tit)+'"')
+		idd = cursor.fetchone()[0]
+		print idd
+		cursor.execute('insert into temasubtema values(%s,%s)',(str(idt),str(idd)))
+		conn.commit()
+		return json.dumps('ok'),200
+	except:
+		conn.rollback()
+		return json.dumps('Error'),400
+	
 @app.route ('/recurso',methods=['POST'])
 def upload_recurso():
 	conn = mysql.connect()
@@ -189,6 +232,19 @@ def upload_recurso():
 			conn.rollback()
 			return json.dumps('Error'),404
 	return json.dumps('Subio'),200
+@app.route ('/calificacion',methods=['POST')
+def post_cal():
+	content = request.get_json(silent=True)
+	print content
+	idr = content['idRecurso']
+	punta = content['puntaje']
+	try:
+		cursor.execute('insert into subtemas values(null,'+str(idr)+','+str(punta)+')')
+		conn.commit()
+		return json.dumps('ok'),200
+	except:
+		conn.rollback()
+		return json.dumps('Error'),400
 
 @app.route ('/recurso',methods=['GET'])
 def get_recurso():
