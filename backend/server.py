@@ -196,7 +196,7 @@ def get_recurso():
 	conn = mysql.connect()
    	cursor =conn.cursor()
 	cursor.execute('select URL from recursos where id = '+i)
-	x = str(cursor.fetchone()[0])
+	x = cursor.fetchone()[0]
 	return json.dumps(x),200
 
 
