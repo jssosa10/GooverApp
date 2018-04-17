@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
 import { RecursoCreatePage } from '../recursoCreate/recursoCreate';
 import { CursoDetailService } from '../../services/cursoDetail.service';
+import { TemaService } from '../../services/tema.service';
 
 @IonicPage
   ({
@@ -23,11 +24,13 @@ export class CursoDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController, private auth: AuthService,
-    public modalCtrl: ModalController, private curs: CursoDetailService) {
-    if (!this.navParams.get('menu')) {
-      console.log('a cambiar');
-      navCtrl.setRoot(HomePage, { ruta: 'Curso', parametros: { id: this.id, menu: true } });
-    }
+    public modalCtrl: ModalController, private curs: CursoDetailService,
+    private tem: TemaService) {
+    console.log(this.id);
+    //if (!this.navParams.get('menu')) {
+    //console.log('a cambiar');
+    //navCtrl.setRoot(HomePage, { ruta: 'Curso', parametros: { id: this.id, menu: true } });
+    //}
     this.id = this.navParams.get('id');
 
     this.username = auth.getUserName();
@@ -35,7 +38,6 @@ export class CursoDetailPage {
 
   setItems() {
     let headerOptions: any = { 'Content-Type': 'application/json' };
-    let myParams = new URLSearchParams();
     let headers = new Headers(headerOptions);
     this.curs.getCurso(headers, this.id)
       .subscribe(
@@ -98,21 +100,18 @@ export class CursoDetailPage {
     }
   }
 
-  abrirRecurso(i,j,k)
-  {
+  abrirRecurso(i, j, k) {
     console.log('i ' + i);
     console.log('j ' + j);
     console.log('k ' + k);
     let recurso;
-    if(k!==undefined)
-    {
-      recurso=this.curso.temas[i].subtemas[j].recursos[k];
+    if (k !== undefined) {
+      recurso = this.curso.temas[i].subtemas[j].recursos[k];
     }
-    else
-    {
-      recurso=this.curso.temas[i].recursos[j];
+    else {
+      recurso = this.curso.temas[i].recursos[j];
     }
-    this.navCtrl.push('RecursoDetail', { id: recurso.id});
+    this.navCtrl.push('RecursoDetail', { id: recurso.id });
   }
 
   showPromptTema() {
@@ -130,9 +129,15 @@ export class CursoDetailPage {
           text: 'Cancelar'
         },
         {
-          text: 'Guardar',
+          text: 'Crear',
           handler: data => {
             console.log('data ' + data.title);
+            let f = { idCurso: this.curso.id, titulo: data.title };
+            this.tem.agregarTema(f).subscribe(
+              er => console.log(er),
+              () => {
+              }
+            )
           }
         }
       ]
@@ -158,9 +163,15 @@ export class CursoDetailPage {
           }
         },
         {
-          text: 'Guardar',
+          text: 'Crear',
           handler: data => {
             console.log('data ' + data.title);
+            let f = { idTema: this.curso.temas[i].id, titulo: data.title };
+            this.tem.agregarSubtema(f).subscribe(
+              er => console.log(er),
+              () => {
+              }
+            )
           }
         }
       ]

@@ -25,6 +25,7 @@ import { TemaService } from '../services/tema.service';
 import { RecursoService } from '../services/recurso.service';
 import { RecursoDetailPageModule } from '../pages/recursoDetail/recursoDetail.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { CalificacionService } from '../services/voto.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     CursoDetailService,
     TemaService,
     RecursoService,
+    CalificacionService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

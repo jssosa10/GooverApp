@@ -36,7 +36,6 @@ export class AuthService {
   login(userInfo, headers) {
     let url = `${this.url}/login`;
     let iJon = JSON.stringify(userInfo);
-
     return this.http.post(url, iJon, new RequestOptions({ headers: headers }))
       .map(res => res.text())
       .map(res => {

@@ -42,6 +42,7 @@ export class LoginPage {
       //this.navCtrl.setRoot(HomePage, { ruta: 'Bienvenida' });
       let headerOptions: any = { 'Content-Type': 'application/json' };
       let headers = new Headers(headerOptions);
+      console.log(headers);
       let f = { username: this.formgroup.get('userName').value, password: this.formgroup.get('pass').value };
       this.auth.login(f, headers)
         .subscribe(

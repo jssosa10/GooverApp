@@ -1,14 +1,32 @@
-<ion-content style="top:44px" padding text-center *ngIf="estaCargado()">
-    <ion-card>
-        <ion-card-header>
-            <h1>{{recurso.url}}</h1>
-        </ion-card-header>
-        <ion-scroll style="height:80vh;" scrollY="true">
-            <ion-list scroll="true">
-                <ion-card>
-                    <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
-                </ion-card>
-            </ion-list>
-        </ion-scroll>
-    </ion-card>
-</ion-content>
+<ion-header>
+
+    <ion-navbar color="toolbar">
+        <button ion-button menuToggle>
+            <ion-icon name="menu" style="color : white;"></ion-icon>
+        </button>
+        <p style="color:white; float: right;">Hola, {{username}}</p>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-grid style="margin-top: 50px">
+    <button  ion-button item-right clear (click)='showPromptVoto()'>
+        <ion-icon col-md-3 name="thumbs-down"></ion-icon>  <ion-icon col-md-3 name="thumbs-up"></ion-icon>
+    </button>
+
+
+    <ion-content style="height:80vh;" padding text-center *ngIf="estaCargado()">
+        <ion-card>
+            <ion-card-header>
+                <h1>{{recurso.url}}</h1>
+            </ion-card-header>
+            <ion-scroll style="height:80vh;" scrollY="true">
+                <ion-list scroll="true">
+                    <ion-card>
+                        <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
+                    </ion-card>
+                </ion-list>
+            </ion-scroll>
+        </ion-card>
+    </ion-content>
+</ion-grid>
