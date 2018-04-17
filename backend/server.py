@@ -171,6 +171,7 @@ def create_tema():
 	conn = mysql.connect()
    	cursor =conn.cursor()
 	content = request.get_json(silent=True)
+	print content
 	idc = content['idCurso']
 	tit = content['titulo']
 	print tit
