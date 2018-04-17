@@ -250,8 +250,10 @@ def post_cal():
 	print content
 	idr = content['idRecurso']
 	punta = content['puntaje']
+	punta = float(punta)
 	try:
-		cursor.execute('insert into subtemas values(null,'+str(idr)+','+str(punta)+')')
+		print 'llego'
+		cursor.execute('insert into subtemas values(null,%s,%s)',(idr,punt))
 		conn.commit()
 		return json.dumps('ok'),200
 	except:
