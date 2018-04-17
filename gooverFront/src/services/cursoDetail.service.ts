@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CursoDetailService {
-    url = 'http://54.197.214.217:9000';
+    url = 'http://GooverlabLoadbalancer-2033977896.us-east-1.elb.amazonaws.com';
 
     cursos: any;
     constructor(private http: Http) {

@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CalificacionService {
     exito: boolean;
-    url = 'http://54.197.214.217:9000';
+    url = 'http://GooverlabLoadbalancer-2033977896.us-east-1.elb.amazonaws.com';
+    //url = 'http://54.197.214.217:9000';
 
     constructor(private http: Http) {
         this.exito = false;

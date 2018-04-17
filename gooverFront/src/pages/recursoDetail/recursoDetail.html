@@ -10,10 +10,6 @@
 </ion-header>
 
 <ion-grid style="margin-top: 50px">
-    <button  ion-button item-right clear (click)='showPromptVoto()'>
-        <ion-icon col-md-3 name="thumbs-down"></ion-icon>  <ion-icon col-md-3 name="thumbs-up"></ion-icon>
-    </button>
-
 
     <ion-content style="height:80vh;" padding text-center *ngIf="estaCargado()">
         <ion-card>
@@ -29,4 +25,8 @@
             </ion-scroll>
         </ion-card>
     </ion-content>
+    <button  ion-button item-right clear (click)='showPromptVoto()'>
+        <ion-icon col-md-3 name="thumbs-up"></ion-icon> <ion-icon col-md-3 name="thumbs-down"></ion-icon>  
+    </button>
+
 </ion-grid>

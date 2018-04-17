@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class TemaService {
     exito: boolean;
-    url = 'http://54.197.214.217:9000';
+    url = 'http://GooverlabLoadbalancer-2033977896.us-east-1.elb.amazonaws.com';
 
     constructor(private http: Http) {
         this.exito = false;
