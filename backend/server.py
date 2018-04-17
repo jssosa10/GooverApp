@@ -261,7 +261,7 @@ def post_cal():
 		return json.dumps('Error'),400
 @app.route ('/health',methods=['GET'])
 def health():
-	return 200
+	return json.dumps('ok'),200
 
 
 if __name__ == "__main__":
