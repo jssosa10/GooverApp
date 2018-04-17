@@ -59,7 +59,7 @@ def getCourse():
 	idrecursos = [[get_recursos_subtema(i) for i in x] for x in idsubtemas]
 	#print idrecursos
 	nombrerecursossub = [[[get_recurso_nombre(i) for i in x] for x in y] for y in idrecursos]
-	res = {'titulo': get_nombre_curso(str(id)),'temas':[{'nombre':nombrestemas[i],'id':listaidtemas[i],'recursos':[{'nombre':nombresrestemas[i][j][0],'calificacion':nombresrestemas[i][j][1],'tipo':nombresrestemas[i][j][2],'id':nombresrestemas[i][j][3]} for j in range(len(nombresrestemas[i]))],'subtemas':[{'nombre':nombresubtemas[i][j],'id':idsubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1],'tipo':nombrerecursossub[i][j][k][2],'id':nombrerecursossub[i][j][k][3]} for k in range(len(idrecursos[i][j])) ]} for j in range(len(idsubtemas[i]))]} for i in range(len(listaidtemas))]}
+	res = {'id':id,'titulo': get_nombre_curso(str(id)),'temas':[{'nombre':nombrestemas[i],'id':listaidtemas[i],'recursos':[{'nombre':nombresrestemas[i][j][0],'calificacion':nombresrestemas[i][j][1],'tipo':nombresrestemas[i][j][2],'id':nombresrestemas[i][j][3]} for j in range(len(nombresrestemas[i]))],'subtemas':[{'nombre':nombresubtemas[i][j],'id':idsubtemas[i][j],'recursos':[{'nombre':nombrerecursossub[i][j][k][0],'calificacion':nombrerecursossub[i][j][k][1],'tipo':nombrerecursossub[i][j][k][2],'id':nombrerecursossub[i][j][k][3]} for k in range(len(idrecursos[i][j])) ]} for j in range(len(idsubtemas[i]))]} for i in range(len(listaidtemas))]}
 	return json.dumps(res),200
 def get_nombre_curso(i):
 	conn = mysql.connect()
