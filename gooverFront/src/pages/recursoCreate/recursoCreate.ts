@@ -97,6 +97,10 @@ export class RecursoCreatePage {
         if (this.resp === 'error') {
           console.log('upload mal');
         }
+        else
+        {
+          this.viewCtrl.dismiss(true);
+        }
       }
     )
   }

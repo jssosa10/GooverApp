@@ -60,7 +60,6 @@ export class CursoDetailPage {
           }
           console.log('oli');
           console.log(this.curso);
-          console.log(this.curso.titulo);
           console.log(this.curso.temas);
           this.cargado = true;
         }
@@ -93,6 +92,10 @@ export class CursoDetailPage {
     if (j !== undefined) {
       let myModal = this.modalCtrl.create(RecursoCreatePage, { 'tema': this.curso.temas[i], 'subtema': this.curso.temas[i].subtemas[j] });
       myModal.present();
+      myModal.onDidDismiss(data=>
+      {
+        this.setItems();
+      });
     }
     else {
       let myModal = this.modalCtrl.create(RecursoCreatePage, { 'tema': this.curso.temas[i] });
@@ -136,6 +139,7 @@ export class CursoDetailPage {
             this.tem.agregarTema(f).subscribe(
               er => console.log(er),
               () => {
+                this.setItems();
               }
             )
           }
@@ -170,6 +174,7 @@ export class CursoDetailPage {
             this.tem.agregarSubtema(f).subscribe(
               er => console.log(er),
               () => {
+                this.setItems();
               }
             )
           }

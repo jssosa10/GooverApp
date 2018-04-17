@@ -31,7 +31,7 @@ export class RecursoDetailPage {
     let headerOptions: any = { 'Content-Type': 'application/json' };
     let myParams = new URLSearchParams();
     let headers = new Headers(headerOptions);
-    /**this.recurs.getRecurso(headers, this.id)
+    this.recurs.getRecurso(headers, this.id)
       .subscribe(
         rs => this.recurso = rs,
         er => console.log(er),
@@ -48,7 +48,6 @@ export class RecursoDetailPage {
         }
 
       )
-*/
   }
 
   showPromptVoto() {
