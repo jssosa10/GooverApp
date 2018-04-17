@@ -125,7 +125,7 @@ def do_login():
 	m = hashlib.md5()
 	content = request.get_json(silent=True)
 	passw = content['password']
-        user = content['username']
+	user = content['username']
 	m.update(passw)
 	prs =  m.hexdigest()
 	conn = mysql.connect()
@@ -170,8 +170,10 @@ def do_regiter():
 def create_tema():
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	idc  = request.form['idCurso']
-	tit = request.form['titulo']
+	content = request.get_json(silent=True)
+	idc = content['idCurso']
+	tit = content['titulo']
+	print tit
 	try:
 		cursor.execute('insert into temas values(null,"'+str(tit)+'")')
 		cursor.execute('select id from temas where nombre="'+str(tit)+'"')
