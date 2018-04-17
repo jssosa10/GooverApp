@@ -170,7 +170,6 @@ def do_regiter():
 def create_tema():
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	print request.
 	content = request.get_json(silent=True)
 	print content
 	idc = content['idCurso']
@@ -192,7 +191,6 @@ def create_tema():
 def create_subtema():
 	conn = mysql.connect()
    	cursor =conn.cursor()
-	print request.
 	content = request.get_json(silent=True)
 	print content
 	idt = content['idTema']
