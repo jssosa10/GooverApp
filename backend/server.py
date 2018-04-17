@@ -197,8 +197,7 @@ def get_recurso():
    	cursor =conn.cursor()
 	cursor.execute('select URL from recursos where id = '+i)
 	x = str(cursor.fetchone()[0])
-	res = {'id':i,'url':x}
-	return json.dumps(res),200
+	return json.dumps(x),200
 
 
 if __name__ == "__main__":
