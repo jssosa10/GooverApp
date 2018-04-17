@@ -244,6 +244,8 @@ def get_recurso():
 	
 @app.route ('/calificacion',methods=['POST'])
 def post_cal():
+	conn = mysql.connect()
+   	cursor =conn.cursor()
 	content = request.get_json(silent=True)
 	print content
 	idr = content['idRecurso']
