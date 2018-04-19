@@ -222,6 +222,7 @@ def upload_recurso():
 			cursor.execute('insert into recursos values(null,"'+str(base_file_name)+','+str(request.form['nombre'])+'","Documento","'+str(resp.url)+'")')
 			cursor.execute('select id from recursos where nombre="'+str(base_file_name)+'"')
 			idd = cursor.fetchone()[0]
+			print idd
 			if 'idS' in request.form:
 				cursor.execute('insert into subtemarecurso values('+str(request.form['idS'])+','+str(idd)+')') 
 			else:
