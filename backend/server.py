@@ -219,7 +219,7 @@ def upload_recurso():
 		file.save(file_name)
 		resp = s3.upload(base_file_name, open(file_name),bucket = 'gooverlabfiles')
 		try:
-			cursor.execute('insert into recursos values(null,"'+str(base_file_name)+','+str(request.form['nombre'])+'","Documento","'+str(resp.url)+'")')
+			cursor.execute('insert into recursos values(null,"'+str(base_file_name)+'","'+str(request.form['nombre'])+'","Documento","'+str(resp.url)+'")')
 			cursor.execute('select id from recursos where nombre="'+str(base_file_name)+'"')
 			idd = cursor.fetchone()[0]
 			print idd
