@@ -14,11 +14,13 @@ export class RecursoService {
         this.exito = false;
     }
 
-    agregarRecurso(selectedFile, name, idTema, subtema) {
+    agregarRecurso(selectedFile, name, idTema, subtema, descripcion) {
         let url = `${this.url}/recurso`;
         const uploadData=new FormData();
         uploadData.append('myFile', selectedFile);       
         uploadData.append('idT', idTema); 
+        uploadData.append('nombre', name); 
+        uploadData.append('descripcion', descripcion); 
         if(subtema)
         {
             uploadData.append('idS', subtema.id); 

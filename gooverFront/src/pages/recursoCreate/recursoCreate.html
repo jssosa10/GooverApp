@@ -21,6 +21,10 @@
         <ion-input type="text" formControlName="nombre" style="background-color : #d1d1d1;padding-left: 2px"></ion-input>
       </ion-item>
 
+      <h3 style="color:red" *ngIf="nombreValido()===false">
+        Debe ingresar un nombre para el recurso
+      </h3>
+
       <br>
 
       <ion-item style="width:100%" class="center">
@@ -35,5 +39,9 @@
     </ion-list>
   </form>
 
+  <ion-spinner name="crescent" class="center" *ngIf="cargando()"></ion-spinner>
   <button ion-button (click)="onUpload()" class="center">Upload!</button>
+  <br>
+  <br>
+
 </ion-content>

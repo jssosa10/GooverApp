@@ -14,8 +14,10 @@ export class RecursoCreatePage {
   nombre: AbstractControl;
   descripcion: AbstractControl;
   isLogged: boolean;
-  resp:any;
+  resp: any;
   selectedFile = null;
+  intento: boolean;
+  varCargando:boolean;
 
   constructor(
     public viewCtrl: ViewController,
@@ -25,6 +27,8 @@ export class RecursoCreatePage {
     private recurs: RecursoService
 
   ) {
+    this.intento = false;
+    this.varCargando=false;
     console.log(params);
 
     console.log(params.get('tema'));
@@ -40,11 +44,12 @@ export class RecursoCreatePage {
 
 
 
-    if (params.get('tema')) {
-      this.titulo = "Nuevo recurso para tema";
+    if (params.get('subtema')) {
+      
+      this.titulo = "Nuevo recurso para subtema";
     }
     else {
-      this.titulo = "Nuevo recurso para subtemas";
+      this.titulo = "Nuevo recurso para tema";
     }
     console.log('t ' + this.titulo);
 
@@ -80,29 +85,38 @@ export class RecursoCreatePage {
     console.log(this.selectedFile.name.split('.')[1])
   }
 
+  valido() {
+    return this.nombreValido()
+  }
+
+  nombreValido() {
+    return !this.intento || this.formgroup.get('nombre').valid;
+  }
+
+  cargando()
+  {
+    return this.varCargando;
+  }
+
   onUpload() {
-    let namesito= this.selectedFile.name.split('.')[1];
-    if(namesito)
-    {
-      namesito=this.nombre+"."+ namesito;
+    this.intento = true;
+    if (this.valido()) {
+      this.varCargando=true;
+      this.recurs.agregarRecurso(this.selectedFile, this.formgroup.get('nombre').value, this.params.get('tema').id, this.params.get('subtema'), this.params.get('descripcion'))
+        .subscribe(
+          rs => this.resp = rs,
+          er => console.log(er),
+          () => {
+            this.varCargando=false;
+            if (this.resp === 'error') {
+              console.log('upload mal');
+            }
+            else {
+              this.viewCtrl.dismiss(true);
+            }
+          }
+        )
     }
-    else{
-      namesito=this.nombre;
-    }
-    this.recurs.agregarRecurso(this.selectedFile, this.formgroup.get('nombre').value, this.params.get('tema').id,this.params.get('subtema'))
-    .subscribe(
-      rs => this.resp = rs,
-      er => console.log(er),
-      () => {
-        if (this.resp === 'error') {
-          console.log('upload mal');
-        }
-        else
-        {
-          this.viewCtrl.dismiss(true);
-        }
-      }
-    )
   }
 
   dismiss() {
