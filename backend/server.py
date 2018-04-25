@@ -177,7 +177,7 @@ def create_tema():
 	print tit
 	try:
 		cursor.execute('insert into temas values(null,"'+str(tit)+'")')
-		cursor.execute('select id from temas where nombre="'+str(tit)+'"')
+		cursor.execute('select MAX(id) from temas where nombre="'+str(tit)+'"')
 		idd = cursor.fetchone()[0]
 		print idd
 		cursor.execute('insert into cursotema values(%s,%s)',(str(idc),str(idd)))
