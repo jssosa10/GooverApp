@@ -26,7 +26,7 @@ export class InstitucionesPage {
     this.username = auth.getUserName();
   }
 
-  setItems() {
+  setItems(val: any) {
     let headerOptions: any = { 'Content-Type': 'application/json' };
     let headers = new Headers(headerOptions);
     this.instit.getInstituciones(headers)
@@ -37,13 +37,18 @@ export class InstitucionesPage {
           if (this.instituciones === 'error') {
             console.log('Instituciones mal');
           }
+          if (val && val.trim() !== '') {
+            this.instituciones = this.instituciones.filter(function (institucion) {
+              return institucion.titulo.toLowerCase().includes(val.toLowerCase());
+            });
+          }
         }
       )
 
   }
 
   ngOnInit() {
-    this.setItems();
+    this.setItems(undefined);
   }
 
   onInstitucion(id) {
@@ -51,14 +56,10 @@ export class InstitucionesPage {
   }
 
   filterItems(ev: any) {
-    this.setItems();
+   
     let val = ev.target.value;
+    this.setItems(val);
 
-    if (val && val.trim() !== '') {
-      this.instituciones = this.instituciones.filter(function (institucion) {
-        return institucion.titulo.toLowerCase().includes(val.toLowerCase());
-      });
-    }
   }
 
   volverAtras() {

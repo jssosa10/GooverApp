@@ -18,17 +18,17 @@ export class CursosPage {
   myInput = "";
   username: string;
   cursos: any;
-  institucion:string;
+  institucion: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth:AuthService, private curs: CursosService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private curs: CursosService) {
     if (!this.navParams.get('menu')) {
       navCtrl.setRoot(HomePage, { ruta: 'Cursos' })
     }
-    this.username=auth.getUserName();
+    this.username = auth.getUserName();
   }
 
-  setItems() {
-    let headerOptions: any = { 'Content-Type': 'application/json'};
+  setItems(val: any) {
+    let headerOptions: any = { 'Content-Type': 'application/json' };
     let myParams = new URLSearchParams();
     let headers = new Headers(headerOptions);
     this.curs.getCursos(headers, undefined)
@@ -53,27 +53,29 @@ export class CursosPage {
               { titulo: 'Ionic', descripcion: 'Curso para aprender ionic como io', img: 'logo.png' }
             ];
           }
+
+          if (val && val.trim() !== '') {
+
+            this.cursos = this.cursos.filter(function (curso) {
+              return curso.titulo.toLowerCase().includes(val.toLowerCase());
+            });
+          }
         }
       )
   }
 
   ngOnInit() {
-    this.setItems();
+    this.setItems(undefined);
   }
 
   onCurso(id) {
-    this.navCtrl.push('Curso', { id: id,menu:true});
+    this.navCtrl.push('Curso', { id: id, menu: true });
   }
 
   filterItems(ev: any) {
-    this.setItems();
-    let val = ev.target.value;
 
-    if (val && val.trim() !== '') {
-      this.cursos = this.cursos.filter(function(curso) {
-        return curso.titulo.toLowerCase().includes(val.toLowerCase());
-      });
-    }
+    let val = ev.target.value;
+    this.setItems(val);
   }
 
 }

@@ -32,7 +32,7 @@ export class CursosInstitucionPage {
     this.institucion = this.id;
   }
 
-  setItems() {
+  setItems(val: any) {
     let headerOptions: any = { 'Content-Type': 'application/json'};
     let headers = new Headers(headerOptions);
     this.curs.getCursos(headers, this.id)
@@ -57,6 +57,12 @@ export class CursosInstitucionPage {
               { titulo: 'Ionic', descripcion: 'Curso para aprender ionic como io', img: 'logo.png' }
             ];
           }
+          if (val && val.trim() !== '') {
+
+            this.cursos = this.cursos.filter(function (curso) {
+              return curso.titulo.toLowerCase().includes(val.toLowerCase());
+            });
+          }
         }
       )
 
@@ -64,7 +70,7 @@ export class CursosInstitucionPage {
   }
 
   ngOnInit() {
-    this.setItems();
+    this.setItems(undefined);
   }
 
   onCurso(id) {
@@ -72,14 +78,9 @@ export class CursosInstitucionPage {
   }
 
   filterItems(ev: any) {
-    this.setItems();
+   
     let val = ev.target.value;
-
-    if (val && val.trim() !== '') {
-      this.cursos = this.cursos.filter(function (curso) {
-        return curso.titulo.toLowerCase().includes(val.toLowerCase());
-      });
-    }
+    this.setItems(val);
   }
 
 }
