@@ -100,6 +100,10 @@ export class CursoDetailPage {
     else {
       let myModal = this.modalCtrl.create(RecursoCreatePage, { 'tema': this.curso.temas[i] });
       myModal.present();
+       myModal.onDidDismiss(data=>
+      {
+        this.setItems();
+      });
     }
   }
 
