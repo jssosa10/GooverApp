@@ -198,7 +198,7 @@ def create_subtema():
 	print tit
 	try:
 		cursor.execute('insert into subtemas values(null,"'+str(tit)+'")')
-		cursor.execute('select id from subtemas where nombre="'+str(tit)+'"')
+		cursor.execute('select max(id) from subtemas where nombre="'+str(tit)+'"')
 		idd = cursor.fetchone()[0]
 		print idd
 		cursor.execute('insert into temasubtema values(%s,%s)',(str(idt),str(idd)))
