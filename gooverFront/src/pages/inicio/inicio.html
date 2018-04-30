@@ -24,13 +24,18 @@
         <ion-row>
             <ion-col col-12 col-lg-6 col-md-12 col-sm-12>
                 <div style="font-size: 3vw;">
-                    Encuentra los mejores recursos
-                    <br> para estudiar
-                    <br> Ahorra tiempo y aprende más
+                    <!--  Encuentra los mejores recursos
+                    <br> para estudiar.
+                    <br> ¡Ahorra tiempo y aprende más!-->
+                    <img src="../../assets/img/holaRecursos.png">
+                    <button ion-button clear large style="background-color:orange; color:white; padding-left: 50px;
+                    padding-top: 50px;padding-bottom: 50px;padding-right: 50px; top: 50px;" (click)="inicioSinLogin()">
+                        Empieza a buscar cursos
+                    </button>
                 </div>
             </ion-col>
             <ion-col col-12 col-lg-6 col-md-12 col-sm-12>
-                <video text-uppercase controls [style.left]="991>=width ? '5%' : '0%'" [style.top]="991>=width ? '0%' : '-100px'">
+                <video text-uppercase controls [style.left]="991>=width ? '5%' : '0%'" [style.top]="991>=width ? '0%' : '-100px'" style="margin-top: 50px">
                     <source src="../../assets/video/video.mp4" type="video/mp4"> Your browser does not support the video tag.
                 </video>
             </ion-col>

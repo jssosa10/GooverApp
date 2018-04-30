@@ -4,7 +4,7 @@
         <button ion-button menuToggle>
             <ion-icon name="menu" style="color : white;"></ion-icon>
         </button>
-        <p style="color:white; float: right;">Hola, {{username}}</p>
+        <p style="color:white; float: right;" *ngIf="username">Hola , {{username}}</p>
     </ion-navbar>
 
 </ion-header>
@@ -19,7 +19,7 @@
                     <ion-list scroll="true">
                         <ion-item *ngFor="let curso of cursos">
                             <h1>{{curso.titulo}}</h1>
-                            <button style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px" (click)="onCurso(curso.id)" item-right>Agregar</button>
+                            <button style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px; padding-left: 30px;padding-right: 30px;font-size: 20px" (click)="onCurso(curso.id)" item-right>Ver</button>
                         </ion-item>
                     </ion-list>
                 </ion-scroll>

@@ -20,6 +20,7 @@ export class InstitucionesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, 
     private instit: InstitucionesService) {
+      console.log('llegaMenu'+ this.navParams.get('menu'))
     if (!this.navParams.get('menu')) {
       navCtrl.setRoot(HomePage, { ruta: 'Instituciones' })
     }

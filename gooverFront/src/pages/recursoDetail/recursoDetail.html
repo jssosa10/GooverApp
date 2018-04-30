@@ -4,7 +4,7 @@
         <button ion-button menuToggle>
             <ion-icon name="menu" style="color : white;"></ion-icon>
         </button>
-        <p style="color:white; float: right;">Hola, {{username}}</p>
+        <p style="color:white; float: right;" *ngIf="username">Hola , {{username}}</p>
     </ion-navbar>
 
 </ion-header>

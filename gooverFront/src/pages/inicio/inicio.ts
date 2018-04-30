@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, Platform } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 @IonicPage
   ({
@@ -24,6 +25,11 @@ export class InicioPage {
 
   openRegistro() {
     this.navCtrl.setRoot('Registro');
+  }
+
+  inicioSinLogin()
+  {
+    this.navCtrl.setRoot(HomePage, { ruta: 'Instituciones' })
   }
 
 }

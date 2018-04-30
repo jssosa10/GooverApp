@@ -75,6 +75,11 @@ export class RegistroPage {
     return !this.intento || this.formgroup.get('pass2').valid;
   }
 
+  passNoCoinciden()
+  {
+    return this.intento && this.formgroup.get('pass2')!== this.formgroup.get('pass') && this.formgroup.get('pass').valid && this.formgroup.get('pass2').valid;
+  }
+
   onLogin() {
     this.navCtrl.setRoot('Login');
   }

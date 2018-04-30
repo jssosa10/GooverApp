@@ -4,7 +4,7 @@
         <button ion-button menuToggle>
             <ion-icon name="menu" style="color : white;"></ion-icon>
         </button>
-        <p style="color:white; float: right;">Hola, {{username}}</p>
+        <p style="color:white; float: right;" *ngIf="username">Hola, {{username}}</p>
     </ion-navbar>
 
 </ion-header>
@@ -21,8 +21,9 @@
                             <ion-thumbnail item-left col-sm-6 col-md-3>
                                 <img src="../assets/instituciones/{{institucion.img}}">
                             </ion-thumbnail>
-                            <h1 col-sm-0 col-md-6 >{{institucion.titulo}}</h1>
-                            <button col-sm-6 col-md-3 style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px" (click)="onInstitucion(institucion.id)" item-right>Ver cursos</button>
+                            <h1 col-sm-0 col-md-6>{{institucion.titulo}}</h1>
+                            <button col-sm-6 col-md-3 style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px;font-size: 20px"
+                                (click)="onInstitucion(institucion.id)" item-right>Ver cursos</button>
                         </ion-item>
                     </ion-list>
                 </ion-scroll>

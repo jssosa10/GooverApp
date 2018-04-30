@@ -10,23 +10,26 @@
         <ion-content>
             <ion-list>
 
-                <button ion-item menuClose (click)="openPage(perfilPage)">
+                <button ion-item menuClose (click)="openPage(perfilPage)" style="font-size: 25px" *ngIf="username">
                     <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px">Mi perfil
                 </button>
                 <hr>
-                <button ion-item menuClose (click)="openPage(bienvenidaPage)">
+                <button ion-item menuClose (click)="openPage(bienvenidaPage)" style="font-size: 25px" *ngIf="username">
                     <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Mis cursos
                 </button>
                 <hr>
-                <button ion-item menuClose (click)="openPage(cursosPage)">
+                <button ion-item menuClose (click)="openPage(cursosPage)" style="font-size: 25px">
                     <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Más cursos
                 </button>
                 <hr>
-                <button ion-item menuClose (click)="openPage(institucionesPage)">
+                <button ion-item menuClose (click)="openPage(institucionesPage)" style="font-size: 25px">
                     <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Instituciones
                 </button>
                 <hr>
-                <button ion-item menuClose (click)="desloguear()">
+                <button ion-item menuClose (click)="volverAInicio()" style="font-size: 25px" *ngIf="!username">
+                    <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Volver a inicio
+                </button>
+                <button ion-item menuClose (click)="volverAInicio()" style="font-size: 25px" *ngIf="username">
                     <img src="../../assets/img/iconA.png" style="vertical-align:middle;max-height: 25px; max-width: 25px"> Cerrar sesión
                 </button>
             </ion-list>

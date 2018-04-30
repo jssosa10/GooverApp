@@ -59,6 +59,10 @@
               Debe ingresar una contraseña
             </h3>
 
+            <h3 style="color:red" *ngIf="passNoCoinciden()">
+              Las contraseñas no coinciden
+            </h3>
+
             <br>
 
             <div padding>

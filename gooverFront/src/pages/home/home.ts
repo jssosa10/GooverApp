@@ -5,6 +5,7 @@ import { BienvenidaPage } from '../bienvenida/bienvenida';
 import { CursosPage } from '../cursos/cursos';
 import { PerfilPage } from '../perfil/perfil';
 import { InstitucionesPage } from '../instituciones/instituciones';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -21,20 +22,21 @@ export class HomePage {
   private perfilPage;
   private institucionesPage;
   private width;
+  private username;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
-    this.rootPage = BienvenidaPage;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private auth: AuthService) {
+    this.rootPage = InstitucionesPage;
     this.loginPage = LoginPage;
     this.bienvenidaPage = BienvenidaPage;
     this.cursosPage = CursosPage;
     this.perfilPage = PerfilPage;
-    this.institucionesPage= InstitucionesPage;
+    this.institucionesPage = InstitucionesPage;
 
-    console.log( this.navParams);
-    console.log('oh oh '+ this.navParams.get('ruta'));
+    console.log(this.navParams);
+    console.log('oh oh ' + this.navParams.get('ruta'));
     if (this.navParams.get('ruta')) {
- 
-      if (this.navParams.get('ruta') === 'CursosInstitucion'|| this.navParams.get('ruta') === 'Curso') {
+      console.log(this.navParams.get('parametros'));
+      if (this.navParams.get('ruta') === 'CursosInstitucion' || this.navParams.get('ruta') === 'Curso' || this.navParams.get('parametros')) {
         console.log('llega')
         this.parametros = this.navParams.get('parametros');
       }
@@ -47,7 +49,7 @@ export class HomePage {
     platform.ready().then((readySource) => {
       this.width = platform.width();
     });
-
+    this.username = auth.getUserName();
   }
 
   ngOnInit() {
@@ -55,11 +57,28 @@ export class HomePage {
 
   openPage(p) {
     console.log(p);
-    this.rootPage = p;
+    this.parametros = { menu: false };
+    if (p == this.institucionesPage) {
+      this.navCtrl.setRoot(HomePage, { ruta: 'Instituciones', parametros: { menu: false } })
+    }
+    if (p == this.cursosPage) {
+      this.navCtrl.setRoot(HomePage, { ruta: 'Cursos', parametros: { menu: false } })
+    }
+    if (p == this.perfilPage) {
+      this.navCtrl.setRoot(HomePage, { ruta: 'Perfil', parametros: { menu: false } })
+    }
+    if (p == this.bienvenidaPage) {
+      this.navCtrl.setRoot(HomePage, { ruta: 'Bienvenida', parametros: { menu: false } })
+    }
+
   }
 
   desloguear() {
     this.navCtrl.setRoot('Login');
+  }
+
+  volverAInicio() {
+    this.navCtrl.setRoot('Inicio');
   }
 
   altura() {
