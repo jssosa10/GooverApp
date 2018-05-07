@@ -84,6 +84,31 @@ export class RecursoDetailPage {
     prompt.present();
   }
 
+  showPromptReporte() {
+    let prompt = this.alertCtrl.create({
+      title: 'Reportar',
+      message: "Ingrese el motivo de su reporte",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Motivo de su reporte',
+          type: 'textarea'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar'
+        },
+        {
+          text: 'Enviar reporte',
+          handler: data => {
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
   extractText(str) {
     var ret = "";
 

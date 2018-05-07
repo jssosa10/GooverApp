@@ -17,7 +17,12 @@
         <ion-scroll style="height:80vh;" scrollY="true">
             <ion-list scroll="true">
                 <ion-card>
-                    <button ion-button (click)="showPromptTema()">Agregar tema</button>
+                    <!-- <button ion-button (click)="showPromptTema()">Agregar tema</button> -->
+
+                    <div class="curso-vacio" *ngIf="cursoVacio()">
+                        <h1>Actualmente este curso no cuenta con contenido</h1>
+                        <h1>En el futuro tendrá justo lo que usted necesita </h1>
+                    </div>
                     <ion-list-header *ngFor="let tema of curso.temas; let i = index" no-lines no-padding>
 
 
@@ -28,9 +33,9 @@
                                 {{ tema.nombre }}
                             </button>
 
-                            <div *ngIf="tema.open">
+                            <!--    <div *ngIf="tema.open">
                                 <button ion-button (click)="showPromptSubtema(i)">Agregar subtema</button>
-                            </div>
+                            </div> -->
                             <ion-list *ngIf="tema.subtemas && tema.open" no-lines>
 
 
@@ -46,7 +51,7 @@
                                         <div *ngIf="subtema.open">
                                             <button ion-button color="secondary" (click)="onRecurso(i,j)">Agregar recurso a subtema</button>
                                         </div>
-                                        
+
                                         <ion-list *ngIf="subtema.recursos && subtema.open">
 
                                             <ion-list-header class="subtema" *ngFor="let recurso of subtema.recursos; let k = index" style="padding-top:10px">

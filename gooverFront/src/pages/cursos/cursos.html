@@ -10,20 +10,27 @@
 </ion-header>
 <ion-content padding>
     <ion-grid text-center>
-        <ion-row>
-            <ion-col col-12 col-md-8 offset-md-2>
-                <ion-searchbar (ionInput)="filterItems($event)" placeholder="Busca cursos">
-                </ion-searchbar>
 
-                <ion-scroll style="height:80vh;" scrollY="true">
-                    <ion-list scroll="true">
-                        <ion-item *ngFor="let curso of cursos">
-                            <h1>{{curso.titulo}}</h1>
-                            <button style="color:white;background-color:#F9BF3B;padding-top: 25px; padding-bottom: 25px; padding-left: 30px;padding-right: 30px;font-size: 20px" (click)="onCurso(curso.id)" item-right>Ver</button>
-                        </ion-item>
-                    </ion-list>
-                </ion-scroll>
-            </ion-col>
-        </ion-row>
+        <ion-searchbar (ionInput)="filterItems($event)" placeholder="Busca cursos">
+        </ion-searchbar>
+
+        <ion-scroll style="height:80vh; width: 80%; margin: auto" scrollY="true">
+            <ion-list scroll="true">
+                <ion-item style="word-wrap: break-word" *ngFor="let curso of cursos">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col style="max-width:55%">
+                                <h1 style="align-content: center; white-space:normal" class="vertical-center">{{curso.titulo}}</h1>
+                            </ion-col>
+                            <ion-col style="float:right;overflow:auto; ">
+                                <button style="color:white;background-color:#F9BF3B;padding: 25px 30px;font-size: 20px" (click)="onCurso(curso.id)" item-right
+                                    float-right>Ver</button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+            </ion-list>
+        </ion-scroll>
+
     </ion-grid>
 </ion-content>

@@ -31,9 +31,11 @@ export class CursoDetailPage {
     //console.log('a cambiar');
     //navCtrl.setRoot(HomePage, { ruta: 'Curso', parametros: { id: this.id, menu: true } });
     //}
+
+    this.username = auth.getUserName(); 
+
     this.id = this.navParams.get('id');
 
-    this.username = auth.getUserName();
   }
 
   setItems() {
@@ -61,6 +63,7 @@ export class CursoDetailPage {
           console.log('oli');
           console.log(this.curso);
           console.log(this.curso.temas);
+          this.id =this.curso.id;
           this.cargado = true;
         }
       )
@@ -85,6 +88,11 @@ export class CursoDetailPage {
 
   toggleSubtema(i, j) {
     this.curso.temas[i].subtemas[j].open = !this.curso.temas[i].subtemas[j].open;
+  }
+
+  cursoVacio()
+  {
+     return typeof this.curso === 'undefined' || typeof this.curso.temas === 'undefined' || this.curso.temas.length === 0;
   }
 
   onRecurso(i, j) {

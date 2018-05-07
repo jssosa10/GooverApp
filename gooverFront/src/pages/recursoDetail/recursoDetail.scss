@@ -1,0 +1,36 @@
+@import "../../theme/globals";
+page-recursoDetail
+{
+   .boton-inferior{
+    border: 2px solid black;
+    border-radius: 10%;
+    width: 90%;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+    color:white;
+   }
+
+   .boton-calificar{
+    background-color:map-get($colors,primary);
+   }
+
+   .boton-calificar:hover, .boton-calificar:active{
+    color:map-get($colors,primary);
+    background-color: white;
+   }
+
+   .boton-reportar{
+    background-color:map-get($colors,danger);
+   }
+
+   .boton-reportar:hover, .boton-reportar:active{
+    color:map-get($colors,danger);
+    background-color: white;
+   }
+
+  .texto-interno{
+      margin:5px;
+  }
+
+}
